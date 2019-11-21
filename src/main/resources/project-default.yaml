@@ -1,0 +1,83 @@
+swarm:
+  bind:
+    address: 0.0.0.0
+    deployment:
+    telyu-1.0.0.war:
+      web:
+        login-config:
+          auth-method: FORM
+          form-login-config:
+            form-login-page: /login.jsp
+            form-error-page: /login_error.jsp
+          security-domain: my-domain
+        security-constraints:
+          - url-pattern: /*
+            methods: [GET, POST]
+            roles: [admin, user]
+  
+  security:
+    security-domains:
+      my-domain:
+        classic-authentication:
+          login-modules:
+            Database:
+              code: Database
+              flag: required
+              module-options:
+                dsJndiName: java:jboss/datasources/MyDS
+                principalsQuery: SELECT password FROM REST_DB_ACCESS WHERE name=?
+                rolesQuery: SELECT role, 'Roles' FROM REST_DB_ACCESS WHERE name=?
+  datasources:
+    jdbc-drivers:
+      h2:
+        driver-class-name: org.h2.Driver
+        xa-datasource-class-name: org.h2.jdbcx.JdbcDataSource
+        driver-module-name: com.h2database.h2
+      com.mysql:
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        xa-datasource-class-name: com.mysql.cj.jdbc.MysqlDataSource
+        driver-module-name: com.mysql
+      org.postgresql:
+        driver-class-name: org.postgresql.Driver
+        xa-datasource-class-name: org.postgresql.xa.PGXADataSource
+        driver-module-name: org.postgresql
+    data-sources:
+      MyDS:
+        driver-name: h2
+        connection-url: jdbc:h2:mem:test;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+        user-name: sa
+        password: sa
+      MagangDS:
+        driver-name: com.mysql
+        connection-url: jdbc:mysql://localhost:3306/magang?useSSL=false&useUnicode=yes&characterEncoding=UTF-8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=Asia/Jakarta
+        user-name: root
+        password:
+      TraningDS:
+        driver-name: com.mysql
+        connection-url: jdbc:mysql://192.168.1.203:3306/trainingDB?useSSL=false&useUnicode=yes&characterEncoding=UTF-8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=Asia/Jakarta
+        user-name: training
+        password: training123
+        
+  logging:
+    file-handlers:
+      time_service_handler:
+        append: true
+        enabled: true
+        encoding: UTF-8
+        level: DEBUG
+        file:
+          path: "log-kita-disini.log"
+    console-handlers:
+      CONSOLE:
+        level: INFO
+    loggers:
+      com.poin:
+        use-parent-handlers: true
+        level: DEBUG
+        handlers:
+          - time_service_handler
+    root-logger:
+      level: INFO
+      handlers:
+        - time_service_handler
+        

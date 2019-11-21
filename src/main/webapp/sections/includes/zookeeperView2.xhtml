@@ -1,0 +1,113 @@
+<ui:composition
+        xmlns:h="http://xmlns.jcp.org/jsf/html"
+        xmlns:f="http://xmlns.jcp.org/jsf/core"
+        xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+        xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+        xmlns:p="http://primefaces.org/ui"
+        xmlns:pe="http://primefaces.org/ui/extensions">
+<!-- EXAMPLE-SOURCE-START -->
+
+<h:form >
+	<p:growl id="message"></p:growl>
+	
+	<p:tabView activeIndex="#{tabViewManagedBean.index}">
+	
+		<p:tab title="hbase config">
+		
+		<h:panelGrid columns="2" cellpadding="5">
+		    <p:outputLabel value="Type: " />
+		    <p:outputLabel value="#{zookeeperView2.type}"></p:outputLabel>
+		    
+		    <p:outputLabel value="clusterName: " />
+		    <p:outputLabel value="#{zookeeperView2.clusterName}"></p:outputLabel>
+		    
+		    <p:outputLabel value="stackId: " />
+			<p:outputLabel value="#{zookeeperView2.stackId}"></p:outputLabel>
+			
+			<p:outputLabel value="version: " />
+			<p:outputLabel value="#{zookeeperView2.version}"></p:outputLabel>
+			
+			<p:outputLabel value="Tag: " />
+			<p:outputLabel value="#{zookeeperView2.tag}"></p:outputLabel>
+		
+			<f:facet name="footer">
+				
+				<p:commandButton value="Do Save" actionListener="#{zookeeperView2.saveAction()}" />
+				<p:commandButton value="Do stuff4" actionListener="#{zookeeperView2.doSomeLogic4()}"/>
+				<p:commandButton value="Do stuff5" actionListener="#{zookeeperView2.doSomeLogic5()}" />
+			
+				<!--  
+				<p:commandButton value="Do stuff4" action="#{contohView.doSomeLogic4()}" ajax="false"/>
+				<p:commandButton value="Do stuff5" action="#{contohView.doSomeLogic5()}" ajax="false"/>
+				-->
+			</f:facet>
+		
+			
+			
+		</h:panelGrid>
+		</p:tab>
+		
+		
+			<p:tab title="zookeeper-env">
+			
+			<p:dataTable  var="productEntry"  value="#{zookeeperView2.properties}">
+			
+			   <p:column headerText="property-name" style="width:30%;" >
+			      <h:outputText value="#{productEntry.key}" />
+			   </p:column>
+			   
+			   <p:column headerText="property-value">
+			    
+			      <p:inputTextarea rows="20" cols="80" value="#{productEntry.value}"   rendered="#{productEntry.key == 'content'}" />
+                  <h:inputText value="#{productEntry.value}" rendered="#{productEntry.key != 'content'}"/>
+                    
+			   </p:column>
+			</p:dataTable>
+			
+			
+		</p:tab>	
+	
+	
+		<p:tab title="zoo.cfg">
+		
+		
+			<p:dataTable  var="entry"  value="#{zookeeperView2.getProperties('zoo.cfg')}">
+			   <p:column  headerText="property-name" style="width:30%;" >
+			      <h:outputText value="#{entry.key}" />
+			   </p:column>
+			   
+			  <p:column headerText="property-value">
+				   			     
+			      <p:inputTextarea rows="20" cols="80" value="#{entry.value}"   rendered="#{entry.key == 'content'}" />
+                  <h:inputText value="#{entry.value}" rendered="#{entry.key != 'content'}"/>
+			   </p:column>
+			   
+			</p:dataTable>
+		
+		</p:tab>
+		
+		<p:tab title="zookeeper-log4j">
+		
+		
+			<p:dataTable  var="entry"  value="#{zookeeperView2.getProperties('zookeeper-log4j')}">
+			   <p:column headerText="property-name" style="width:30%;" >
+			      <h:outputText value="#{entry.key}" />
+			   </p:column>
+			   <p:column headerText="property-value">
+			   
+			     
+			      <p:inputTextarea rows="20" cols="80" value="#{entry.value}"   rendered="#{entry.key == 'content'}" />
+                  <h:inputText value="#{entry.value}" rendered="#{entry.key != 'content'}"/>
+            
+			   
+			   
+			  
+			   </p:column>
+			</p:dataTable>
+		
+		</p:tab>
+	
+	</p:tabView>
+</h:form>    
+    
+</ui:composition>

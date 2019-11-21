@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="telyu-1.0.0-thorntail">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/target/telyu-1.0.0-thorntail.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

@@ -1,0 +1,93 @@
+<ui:composition
+        xmlns:h="http://xmlns.jcp.org/jsf/html"
+        xmlns:f="http://xmlns.jcp.org/jsf/core"
+        xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+        xmlns:p="http://primefaces.org/ui"
+        xmlns:pe="http://primefaces.org/ui/extensions">
+<!-- EXAMPLE-SOURCE-START -->
+
+<h:form style="width:800px;">
+
+	<p:growl id="message"></p:growl>
+	
+	<p:tabView activeIndex="#{tabViewManagedBean.index}">
+	
+	  <p:tab title="Tab#1">
+			<p:outputLabel value="Diskfree"></p:outputLabel>
+			
+			<p:chart type="pie"  id="diskfree" 
+                 responsive="true"
+                 model="#{diskfreeBean.model}" />
+
+	</p:tab>
+		
+
+		
+		<p:tab title="Tab#3">
+			<p:outputLabel value="Network"></p:outputLabel>
+			
+              <p:chart type="pie"  id="network" 
+                 model="#{networkBean.model}"/>
+                  
+		</p:tab>
+	
+		
+		<p:tab title="Tab#4">
+			<p:outputLabel value="Memory"></p:outputLabel>
+			
+              <p:chart type="donut"  id="memory" 
+                 model="#{chartView.donutModel2}" />
+                  
+		</p:tab>		
+		
+		<p:tab title="Tab#5">
+			<p:outputLabel value="OS Data"></p:outputLabel>
+			
+              <p:chart type="bar"  id="osdatabean" 
+                 model="#{chartView.barModel}" style="height:300px"/>
+	
+ 
+		</p:tab>
+		
+		
+		
+		<p:tab title="Tab#6">
+			<p:outputLabel value="Content goes here ! Message #6"></p:outputLabel>
+			
+ 			<p:chart type="bar"  id="dNJvmMetrics" 
+                 model="#{chartView.horizontalBarModel}" style="height:300px" />
+			
+		</p:tab>
+		
+			
+		<p:tab title="Tab#7">
+			<p:outputLabel value="Content goes here ! Message #6"></p:outputLabel>
+			
+ 			<p:chart type="line"  id="dNJvmMetrics2" 
+                 responsive="true"
+                 model="#{chartView.animatedModel1}" />
+			
+		</p:tab>
+		
+			
+		<p:tab title="Tab#8">
+			<p:outputLabel value="Content goes here ! Message #6"></p:outputLabel>
+			
+ 			<p:chart type="bar"  id="dNJvmMetrics3" 
+                 responsive="true"
+                 model="#{chartView.animatedModel2}" />
+			
+		</p:tab>
+		
+	
+
+		
+		
+		
+		
+		
+		
+	</p:tabView>
+</h:form>    
+    
+</ui:composition>

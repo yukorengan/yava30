@@ -1,0 +1,98 @@
+<ui:composition
+        xmlns:h="http://xmlns.jcp.org/jsf/html"
+        xmlns:f="http://xmlns.jcp.org/jsf/core"
+        xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+        xmlns:p="http://primefaces.org/ui"
+        xmlns:pe="http://primefaces.org/ui/extensions">
+<!-- EXAMPLE-SOURCE-START -->
+
+<!--   <h:form >  -->
+	
+	<p:tabView activeIndex="#{tabViewManagedBean.index}">
+
+			<p:tab title="Test">
+			
+					<p:dataTable var="v" value="#{test.list}" id="testTable">
+					
+						<p:column headerText="Test value">
+						<!-- 	<h:outputText value="#{v}"/>  rendered="#{not test.editMode}" />  -->
+							<p:inputText value="#{v}" />  <!-- rendered="#{test.editMode}" />  -->
+						</p:column>
+						
+					</p:dataTable>
+
+					<p:commandButton value="Clear" actionListener="#{test.clear()}"
+						immediate="true" update="testTable" />
+						
+					<p:commandButton value="Update" actionListener="#{test.update()}"
+						update="testTable" />
+						
+					<!-- adding a new button just for testing purposes -->
+					<p:commandButton value="Submit list" action="#{test.submit}" />
+
+			</p:tab>
+			
+			
+			<p:tab title="List of Params">
+			
+			<p:dataTable var="artikel" value="#{testBean.items}"
+				style="width:50%;">
+
+				<f:facet name="header">
+                     ArrayList Table
+                 </f:facet>
+
+				<p:column headerText="key" style="width:30%;">
+					<h:outputText value="#{artikel.id}" />
+				</p:column>
+
+				<p:column headerText="value">
+					<h:inputText value="#{artikel.value}" />
+				</p:column>
+
+
+
+				<f:facet name="footer">
+					<h:commandButton value="add" action="#{testBean.addAction}" />
+					<h:commandButton value="Click" actionListener="#{testBean.action}" />
+					<h:commandButton value="TestGetData" actionListener="#{phoenixExample.getData()}" />
+				</f:facet>
+
+
+			</p:dataTable>
+			
+			</p:tab>
+	<p:tab title="List of Params">
+				<!--  binding="#{testBean.hashmapTable}" -->
+			<p:dataTable var="l" value="#{testBean.params}" style="width:50%;">
+
+				<f:facet name="header">
+                     List of Params
+                 </f:facet>
+
+
+				<p:column headerText="key" style="width:30%;">
+					<h:outputText value="#{l.key}" />
+				</p:column>
+
+				<p:column headerText="value">
+					<h:inputText value="#{l.value}" />
+				</p:column>
+
+
+				<f:facet name="footer">
+					<h:commandButton value="Click" actionListener="#{testBean.action}" />
+
+				</f:facet>
+
+
+			</p:dataTable>
+
+	</p:tab>
+	
+	</p:tabView>
+	
+	
+<!--  </h:form>   -->    
+    
+</ui:composition>

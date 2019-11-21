@@ -1,0 +1,77 @@
+<ui:composition
+        xmlns:h="http://xmlns.jcp.org/jsf/html"
+        xmlns:f="http://xmlns.jcp.org/jsf/core"
+        xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+        xmlns:p="http://primefaces.org/ui"
+        xmlns:pe="http://primefaces.org/ui/extensions">
+<!-- EXAMPLE-SOURCE-START -->
+
+<h:form >
+	<p:growl id="message"></p:growl>
+	
+	<p:tabView activeIndex="#{tabViewManagedBean.index}">
+	
+		<p:tab title="hbase-site">
+		
+		<h:panelGrid columns="2" cellpadding="5">
+		    <p:outputLabel value="Type: " />
+		    <p:outputLabel value="#{mapreduceView.type}"></p:outputLabel>
+		    
+		    <p:outputLabel value="clusterName: " />
+		    <p:outputLabel value="#{mapreduceView.clusterName}"></p:outputLabel>
+		    
+		    <p:outputLabel value="stackId: " />
+			<p:outputLabel value="#{mapreduceView.stackId}"></p:outputLabel>
+			
+			<p:outputLabel value="version: " />
+			<p:outputLabel value="#{mapreduceView.version}"></p:outputLabel>
+			
+			<p:outputLabel value="Tag: " />
+			<p:outputLabel value="#{mapreduceView.tag}"></p:outputLabel>
+			
+			</h:panelGrid>
+			
+			<p:dataTable  var="productEntry"  value="#{mapreduceView.properties}">
+			   <p:column>
+			      <h:outputText value="#{productEntry.key}" />
+			   </p:column>
+			   <p:column>
+			       <h:outputText value="#{productEntry.value}" />
+			   </p:column>
+			</p:dataTable>
+			
+			
+		</p:tab>
+	
+	
+	
+		<p:tab title="mapred-env">
+		
+		
+			<p:dataTable  var="entry"  value="#{mapreduceView.getProperties('mapred-env')}">
+			   <p:column>
+			      <h:outputText value="#{entry.key}" />
+			   </p:column>
+			   <p:column>
+			       <h:outputText value="#{entry.value}" />
+			   </p:column>
+			</p:dataTable>
+		
+		</p:tab>
+		
+
+		<p:tab title="ranger-hbase-policymgr-ssl">
+			<p:dataTable  var="entry"  value="#{hbaseView.getProperties('ranger-hbase-policymgr-ssl')}">
+			   <p:column>
+			      <h:outputText value="#{entry.key}" />
+			   </p:column>
+			   <p:column>
+			       <h:outputText value="#{entry.value}" />
+			   </p:column>
+			</p:dataTable>		
+		</p:tab>
+	
+	</p:tabView>
+</h:form>    
+    
+</ui:composition>

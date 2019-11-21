@@ -1,0 +1,92 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pe="http://primefaces.org/ui/extensions">
+      
+    <pe:head title="PrimeFaces Extensions - Layout created by pane options" shortcutIcon="#{request.contextPath}/favicon.ico">
+
+    <style type="text/css">
+        .ui-layout-unit{
+             border: none;
+        }
+        .ui-layout-pane{
+             border: none;
+        }
+        .ui-layout{
+             border: none;
+        }
+    </style>
+    
+ </pe:head>
+ <h:body>
+ 
+<h:form id="mainForm">
+    <pe:layout id="fullPage" options="#{fullLayout.layoutOptions}"
+                stateCookie="true" widgetVar="fpLayoutWidget">
+        
+        <pe:layoutPane position="center">
+        
+             <pe:layoutPane position="center">
+             
+                <f:facet name="header">
+                    <h:outputText value="Dashboard"/>
+                </f:facet>
+                
+                <p:growl id="growl" life="2000" />
+                   
+                <p:outputPanel id="myPanel">
+                    <ui:include src="/sections/includes/#{menuContentBean.page}.xhtml" />
+                </p:outputPanel>
+                
+                    
+            </pe:layoutPane>
+                
+        </pe:layoutPane>
+        
+        <pe:layoutPane position="west">
+             
+             <pe:layoutPane position="center">
+                
+  				<f:facet name="header">
+                    <h:outputText value="Menu"/>
+          </f:facet>
+
+          <p:menu toggleable="true">
+              <p:menuitem value="DASHBOARD" id="dashboard" update="myPanel" actionListener="#{menuContentBean.setPage('hadoopView')}" />
+              <p:submenu label="SERVICES">
+                  <p:menuitem value="TEZ" id="tez" update="myPanel" actionListener="#{menuContentBean.setPage('TEZView')}"/>
+                  <p:menuitem value="YARN" id="yarn" update="myPanel" actionListener="#{menuContentBean.setPage('yarnView')}"/>
+                  <p:menuitem value="HIVE" id="hive" update="myPanel" actionListener="#{menuContentBean.setPage('hiveView')}"/>
+                  <p:menuitem value="ZOOKEEPER" id="zookeeper" update="myPanel" actionListener="#{menuContentBean.setPage('zookeeperView')}"/>
+                  <p:menuitem value="HBASE" id="hbase" update="myPanel" actionListener="#{menuContentBean.setPage('hbaseView')}"/>
+                  <p:menuitem value="MAPREDUCE2" id="mapreduce" update="myPanel" actionListener="#{menuContentBean.setPage('mapreduce2View')}"/>
+                  <p:menuitem value="AMBARI METRIC" id="ambarimetric" update="myPanel" actionListener="#{menuContentBean.setPage('ambarimetricView')}"/>
+              </p:submenu>
+          </p:menu>
+  		    
+                
+            </pe:layoutPane>
+             
+            
+        </pe:layoutPane>
+        
+    </pe:layout>
+</h:form>
+
+<h:outputStylesheet library="css" name="global.css"/>
+<h:outputStylesheet library="css" name="azia.css"/>
+   
+<h:outputStylesheet id="layoutCSS">
+    body {
+        margin: 4px !important;
+    }
+</h:outputStylesheet>    
+
+<!-- EXAMPLE-SOURCE-END -->
+
+</h:body>
+
+
+</html>

@@ -1,0 +1,152 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pe="http://primefaces.org/ui/extensions">
+<ui:composition template="/templates/masterLayout.xhtml">
+    <ui:define name="resources-app">
+        <ui:include src="/sections/shared/resources-app.xhtml"/>
+        <h:outputStylesheet library="syntaxhighlighter" name="styles/syntaxhighlighter.css"/>
+        <h:outputScript library="syntaxhighlighter" name="scripts/shCore.js" target="head"/>
+        <h:outputScript library="syntaxhighlighter" name="scripts/shBrushXml.js" target="head"/>
+        <h:outputScript library="syntaxhighlighter" name="scripts/shBrushJava.js" target="head"/>
+        <h:outputScript library="syntaxhighlighter" name="scripts/shBrushCss.js" target="head"/>
+        <h:outputScript library="syntaxhighlighter" name="scripts/shBrushJScript.js" target="head"/>
+        <h:outputScript id="syntaxhighlighterInit" target="body">
+            dp.SyntaxHighlighter.ClipboardSwf = '#{request.contextPath}/resources/syntaxhighlighter/scripts/clipboard.swf';
+            dp.SyntaxHighlighter.HighlightAll('code');
+            Showcase.displayPage();
+        </h:outputScript>
+    </ui:define>
+    <ui:define name="header">
+        <ui:include src="/sections/system/header.xhtml"/>
+    </ui:define>
+    <ui:define name="center">
+        <pe:layoutPane position="center" id="layoutCenter">
+            <ui:insert name="centerContent"/>
+        </pe:layoutPane>
+        <pe:layoutPane position="west" id="layoutWest">
+            <f:facet name="header">
+                <h:outputText value="Components and more"/>
+            </f:facet>
+            <p:menu id="componentList">
+                <p:menuitem value="ClientBehaviours" styleClass="#{navigationContext.getMenuitemStyleClass('clientBehaviours')}"
+                            icon="#{technicalInfo.getMenuitemIconStyleClass('clientBehaviours')}"
+                            onclick="Showcase.selectComponentLink(this)" ajax="false" url="/views/clientBehaviours.jsf"/>
+                <p:menuitem value="Converters" styleClass="#{navigationContext.getMenuitemStyleClass('converters')}"
+                            icon="#{technicalInfo.getMenuitemIconStyleClass('converters')}"
+                            onclick="Showcase.selectComponentLink(this)" ajax="false" url="/views/converters.jsf"/>
+                <p:menuitem value="Functions, Utils" styleClass="#{navigationContext.getMenuitemStyleClass('utils')}"
+                            icon="#{technicalInfo.getMenuitemIconStyleClass('utils')}"
+                            onclick="Showcase.selectComponentLink(this)" ajax="false" url="/views/utils.jsf"/>
+                <p:separator/>
+                <p:menuitem value="BlockUI" styleClass="#{navigationContext.getMenuitemStyleClass('blockUI')}"
+                            icon="#{technicalInfo.getMenuitemIconStyleClass('blockUI')}"
+                            onclick="Showcase.selectComponentLink(this)" ajax="false" url="/views/blockUI.jsf"/>
+                <p:menuitem value="Calculator" styleClass="#{navigationContext.getMenuitemStyleClass('calculator')}"
+                            icon="#{technicalInfo.getMenuitemIconStyleClass('calculator')}"
+                            onclick="Showcase.selectComponentLink(this)" ajax="false" url="/views/calculator.jsf"/>
+                <p:menuitem value="CKEditor" styleClass="#{navigationContext.getMenuitemStyleClass('ckEditor')}"
+                            icon="#{technicalInfo.getMenuitemIconStyleClass('ckEditor')}"
+                            onclick="Showcase.selectComponentLink(this)" ajax="false" url="/views/ckEditor.jsf"/>
+                <p:menuitem value="Clipboard" styleClass="#{navigationContext.getMenuitemStyleClass('clipboard')}"
+                            icon="#{technicalInfo.getMenuitemIconStyleClass('clipboard')}"
+                            onclick="Showcase.selectComponentLink(this)" ajax="false" url="/views/clipboard.jsf"/>
+                <p:menuitem value="CodeMirror" styleClass="#{navigationContext.getMenuitemStyleClass('codeMirror')}"
+                            icon="#{technicalInfo.getMenuitemIconStyleClass('codeMirror')}"
+                            onclick="Showcase.selectComponentLink(this)" ajax="false" url="/views/codeMirror.jsf"/>
+                <p:menuitem value="Document Viewer" styleClass="#{navigationContext.getMenuitemStyleClass('documentViewer')}"
+                            icon="#{technicalInfo.getMenuitemIconStyleClass('documentViewer')}"
+                            onclick="Showcase.selectComponentLink(this)" ajax="false" url="/views/documentViewer.jsf"/>
+                <p:menuitem value="DynaForm" styleClass="#{navigationContext.getMenuitemStyleClass('dynaForm')}"
+                            icon="#{technicalInfo.getMenuitemIconStyleClass('dynaForm')}"
+                            onclick="Showcase.selectComponentLink(this)" ajax="false" url="/views/dynaForm.jsf"/>
+                <p:menuitem value="FluidGrid" styleClass="#{navigationContext.getMenuitemStyleClass('fluidGrid')}"
+                            icon="#{technicalInfo.getMenuitemIconStyleClass('fluidGrid')}"
+                            onclick="Showcase.selectComponentLink(this)" ajax="false" url="/views/fluidGrid.jsf"/>
+                <p:menuitem value="GChart" styleClass="#{navigationContext.getMenuitemStyleClass('gchart')}"
+                            icon="#{technicalInfo.getMenuitemIconStyleClass('gchart')}"
+                            onclick="Showcase.selectComponentLink(this)" ajax="false" url="/views/gchart.jsf"/>
+                <p:menuitem value="GitHub" styleClass="#{navigationContext.getMenuitemStyleClass('github')}"
+                            icon="#{technicalInfo.getMenuitemIconStyleClass('github')}"
+                            onclick="Showcase.selectComponentLink(this)" ajax="false" url="/views/github.jsf"/>
+                <p:menuitem value="Gravatar" styleClass="#{navigationContext.getMenuitemStyleClass('gravatar')}"
+                            icon="#{technicalInfo.getMenuitemIconStyleClass('gravatar')}"
+                            onclick="Showcase.selectComponentLink(this)" ajax="false" url="/views/gravatar.jsf"/>
+                <p:menuitem value="Orgchart" styleClass="#{navigationContext.getMenuitemStyleClass('orgchart')}"
+                            icon="#{technicalInfo.getMenuitemIconStyleClass('orgchart')}"
+                            onclick="Showcase.selectComponentLink(this)" ajax="false" url="/views/orgchart.jsf"/>
+                <p:menuitem value="Exporter" styleClass="#{navigationContext.getMenuitemStyleClass('exporter')}"
+                            icon="#{technicalInfo.getMenuitemIconStyleClass('exporter')}"
+                            onclick="Showcase.selectComponentLink(this)" ajax="false" url="/views/exporter.jsf"/>
+                <p:menuitem value="ImageAreaSelect" styleClass="#{navigationContext.getMenuitemStyleClass('imageAreaSelect')}"
+                            icon="#{technicalInfo.getMenuitemIconStyleClass('imageAreaSelect')}"
+                            onclick="Showcase.selectComponentLink(this)" ajax="false" url="/views/imageAreaSelect.jsf"/>
+                <p:menuitem value="ImageRotateAndResize"
+                            styleClass="#{navigationContext.getMenuitemStyleClass('imageRotateAndResize')}"
+                            icon="#{technicalInfo.getMenuitemIconStyleClass('imageRotateAndResize')}"
+                            onclick="Showcase.selectComponentLink(this)" ajax="false" url="/views/imageRotateAndResize.jsf"/>
+                <p:menuitem value="Layout" styleClass="#{navigationContext.getMenuitemStyleClass('layout')}"
+                            icon="#{technicalInfo.getMenuitemIconStyleClass('layout')}"
+                            onclick="Showcase.selectComponentLink(this)" ajax="false" url="/views/layout.jsf"/>
+                <p:menuitem value="MasterDetail" styleClass="#{navigationContext.getMenuitemStyleClass('masterDetail')}"
+                            icon="#{technicalInfo.getMenuitemIconStyleClass('masterDetail')}"
+                            onclick="Showcase.selectComponentLink(this)" ajax="false" url="/views/masterDetail.jsf"/>
+                <p:menuitem value="QRCode" styleClass="#{navigationContext.getMenuitemStyleClass('qrCode')}"
+                            icon="#{technicalInfo.getMenuitemIconStyleClass('qrCode')}"
+                            onclick="Showcase.selectComponentLink(this)" ajax="false" url="/views/qrCode.jsf"/>
+                <p:menuitem value="RemoteCommand" styleClass="#{navigationContext.getMenuitemStyleClass('remoteCommand')}"
+                            icon="#{technicalInfo.getMenuitemIconStyleClass('remoteCommand')}"
+                            onclick="Showcase.selectComponentLink(this)" ajax="false" url="/views/remoteCommand.jsf"/>
+                <p:menuitem value="Sheet" styleClass="#{navigationContext.getMenuitemStyleClass('sheet')}"
+                            icon="#{technicalInfo.getMenuitemIconStyleClass('sheet')}"
+                            onclick="Showcase.selectComponentLink(this)" ajax="false" url="/views/sheet.jsf"/>
+                <p:menuitem value="SlideOut" styleClass="#{navigationContext.getMenuitemStyleClass('slideout')}"
+                            icon="#{technicalInfo.getMenuitemIconStyleClass('slideout')}"
+                            onclick="Showcase.selectComponentLink(this)" ajax="false" url="/views/slideOut.jsf"/>
+                <p:menuitem value="Social" styleClass="#{navigationContext.getMenuitemStyleClass('social')}"
+                            icon="#{technicalInfo.getMenuitemIconStyleClass('social')}"
+                            onclick="Showcase.selectComponentLink(this)" ajax="false" url="/views/social.jsf"/>
+                <p:menuitem value="Speedtest" styleClass="#{navigationContext.getMenuitemStyleClass('speedtest')}"
+                            icon="#{technicalInfo.getMenuitemIconStyleClass('speedtest')}"
+                            onclick="Showcase.selectComponentLink(this)" ajax="false" url="/views/speedtest.jsf"/>
+                <p:menuitem value="Timer" styleClass="#{navigationContext.getMenuitemStyleClass('timer')}"
+                            icon="#{technicalInfo.getMenuitemIconStyleClass('timer')}"
+                            onclick="Showcase.selectComponentLink(this)" ajax="false" url="/views/timer.jsf"/>
+                <p:menuitem value="TimePicker" styleClass="#{navigationContext.getMenuitemStyleClass('timePicker')}"
+                            icon="#{technicalInfo.getMenuitemIconStyleClass('timePicker')}"
+                            onclick="Showcase.selectComponentLink(this)" ajax="false" url="/views/timePicker.jsf"/>
+                <p:menuitem value="Tooltip" styleClass="#{navigationContext.getMenuitemStyleClass('tooltip')}"
+                            icon="#{technicalInfo.getMenuitemIconStyleClass('tooltip')}"
+                            onclick="Showcase.selectComponentLink(this)" ajax="false" url="/views/tooltip.jsf"/>
+                <p:menuitem value="TriStateManyCheckbox"
+                            styleClass="#{navigationContext.getMenuitemStyleClass('triStateManyCheckbox')}"
+                            icon="#{technicalInfo.getMenuitemIconStyleClass('triStateManyCheckbox')}"
+                            onclick="Showcase.selectComponentLink(this)" ajax="false" url="/views/triStateManyCheckbox.jsf"/>
+                <p:menuitem value="Waypoint"
+                            styleClass="#{navigationContext.getMenuitemStyleClass('waypoint')}"
+                            icon="#{technicalInfo.getMenuitemIconStyleClass('waypoint')}"
+                            onclick="Showcase.selectComponentLink(this)" ajax="false" url="/views/waypoint.jsf"/>
+            </p:menu>
+            <pe:tooltip value="New component in the current release" shared="true" for="@(.ui-icon-new-comp)"/>
+            <pe:tooltip value="Updated component / use case in the current release" shared="true" for="@(.ui-icon-updated-comp)"/>
+            <pe:tooltip value="Deprecated component - Retired or moved to PrimeFaces" shared="true" for="@(.ui-icon-deprecated-comp)"/>
+        </pe:layoutPane>
+        <pe:layoutPane position="east" id="layoutEast">
+            <pe:layoutPane position="center">
+                <f:facet name="header">
+                    <h:outputText value="Use Cases"/>
+                </f:facet>
+                <ui:insert name="useCases"/>
+            </pe:layoutPane>
+            <pe:layoutPane position="south">
+                <ui:insert name="docuTable"/>
+            </pe:layoutPane>
+        </pe:layoutPane>
+    </ui:define>
+    <ui:define name="footer">
+        <ui:include src="/sections/system/footer.xhtml"/>
+    </ui:define>
+</ui:composition>
+</html>

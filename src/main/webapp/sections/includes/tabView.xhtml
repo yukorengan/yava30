@@ -1,0 +1,99 @@
+<ui:composition
+        xmlns:h="http://xmlns.jcp.org/jsf/html"
+        xmlns:f="http://xmlns.jcp.org/jsf/core"
+        xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+        xmlns:p="http://primefaces.org/ui"
+        xmlns:pe="http://primefaces.org/ui/extensions"
+        xmlns:ct="http://www.chartistjsf.org/charts">
+        
+        
+<!-- EXAMPLE-SOURCE-START -->
+
+<h:form style="width:500px;">
+
+	<p:growl id="message"></p:growl>
+	<p:message id="lineChartMessage" for="lineChart" showDetail="true" />
+	 
+	<p:tabView activeIndex="#{tabViewManagedBean.index}">
+	
+		<p:tab title="Tab#1">
+			<ct:chart id="lineChart" type="line" model="#{lineChartBean.lineModel}">
+                 <p:ajax event="itemSelect" listener="#{lineChartBean.itemSelect}" update="lineChartMessage"  />
+            </ct:chart>
+			
+		</p:tab>
+		
+		<p:tab title="Tab#2">
+			   <p:outputLabel value="Content goes here ! Message #1 Job Market"></p:outputLabel>
+
+              <p:chart type="pie"
+                 responsive="true"
+                 model="#{jobMarketBean.model}" />
+		</p:tab>
+		
+		<p:tab title="Tab#3">
+			<p:outputLabel value="Content goes here ! Message # 3"></p:outputLabel>
+			
+			<p:chart id="cpu_gauge" type="metergauge" model="#{cpuUsageBean.meterGaugeModel}"
+                 style="width:400px;height:250px"/>
+        	<p:poll interval="1" update="cpu_gauge"/>
+ 
+ 
+		</p:tab>
+		
+		<p:tab title="Tab#4">
+			<p:outputLabel value="Content goes here ! Message # 4"></p:outputLabel>
+
+			    <h:panelGrid columns="2" cellpadding="5">
+			        <p:outputLabel for="date" value="Date: " />
+			        <p:inputMask id="date" value="#{maskView.date}" mask="99/99/9999"/>
+			 
+			        <p:outputLabel for="phone" value="Phone:" />
+			        <p:inputMask id="phone" value="#{maskView.phone}" mask="(999) 999-9999"/>
+			 
+			        <p:outputLabel for="phoneWithExt" value="Phone with Ext:" />
+			        <p:inputMask id="phoneWithExt" value="#{maskView.phoneExt}" mask="(999) 999-9999? x99999"/>
+			 
+			        <p:outputLabel for="taxId" value="Tax Id:" />
+			        <p:inputMask id="taxId" value="#{maskView.taxId}" mask="99-9999999"/>
+			 
+			        <p:outputLabel for="ssn" value="SSN:" />
+			        <p:inputMask id="ssn" value="#{maskView.ssn}" mask="999-99-9999"/>
+			 
+			        <p:outputLabel for="key"  value="Product Key: " />
+			        <p:inputMask id="key" value="#{maskView.productKey}" mask="a*-999-a999"/>
+			 
+			        <p:commandButton value="Reset" type="reset" />
+			        <p:commandButton value="Submit" update="display" oncomplete="PF('dlg').show()"/>
+			    </h:panelGrid>
+			 
+			    <p:dialog widgetVar="dlg" modal="true" resizable="false" header="Values" showEffect="fade"> 
+			        
+			        <p:panelGrid id="display" columns="2" columnClasses="label,value">
+			            <h:outputText value="Date: " />
+			            <h:outputText id="dateValue" value="#{maskView.date}" />
+			 
+			            <h:outputText value="Phone: " />
+			            <h:outputText id="phoneValue" value="#{maskView.phone}" />
+			 
+			            <h:outputText value="Phone with Ext: " />
+			            <h:outputText id="phoneWithExtValue" value="#{maskView.phoneExt}"/>
+			 
+			            <h:outputText value="taxId: " />
+			            <h:outputText id="taxValue" value="#{maskView.taxId}" />
+			 
+			            <h:outputText value="SSN: " />
+			            <h:outputText id="ssnValue" value="#{maskView.ssn}" />
+			 
+			            <h:outputText value="Product Key: " />
+			            <h:outputText id="keyValue" value="#{maskView.productKey}" />
+			        </p:panelGrid>
+			    </p:dialog>
+			    			
+		</p:tab>
+		
+	</p:tabView>
+	
+</h:form>    
+    
+</ui:composition>

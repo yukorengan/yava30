@@ -1,0 +1,7 @@
+map:
+  19:
+    typeID: 2
+    limit: 300
+  20:
+    typeID: 8
+    limit: 100

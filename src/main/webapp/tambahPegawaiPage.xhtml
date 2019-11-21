@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:f="http://xmlns.jcp.org/jsf/core"
+	  xmlns:h="http://xmlns.jcp.org/jsf/html"
+	  xmlns:p="http://primefaces.org/ui"
+	  xmlns:pe="http://primefaces.org/ui/extensions"
+	  xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+>
+      
+
+    <pe:head title="Tambah Pegawai" shortcutIcon="#{request.contextPath}/favicon.ico">
+     
+        <f:facet name="first">
+            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        </f:facet>
+        
+    </pe:head>
+    
+    <h:body>
+		<div class="ui-g">
+			<div class="ui-grid-col-2">
+				<h:form>
+					<p:growl id="messages" showDetail="false"/>
+					<h2>Menu Sistem</h2>
+					<p:menu>
+						<p:submenu label="Utama">
+							<p:menuitem update="myPanel" value="Dashboard" actionListener="#{menuContentBean.setPage('dashboard')}"/>
+						</p:submenu>
+						<p:submenu label="Data Master">
+							<p:menuitem update="myPanel" value="Data Pegawai" actionListener="#{menuContentBean.setPage('dataPegawai')}"/>
+							<p:menuitem update="myPanel" value="Data Mahasiswa" actionListener="#{menuContentBean.setPage('include2')}"/>
+						</p:submenu>
+						<p:submenu label="Pengaturan">
+							<p:menuitem update="myPanel" value="Akun Admin" actionListener="#{menuContentBean.setPage('inputGroup')}"/>
+						</p:submenu>
+					</p:menu>
+				</h:form>
+			</div>
+			<div class="ui-grid-col-10">
+				<p:outputPanel id="myPanel">
+					<h:form>
+						<h3>Nama Lengkap</h3>
+						<p:inputText />
+						<h3>Alamat Lengkap</h3>
+						<p:inputText />
+
+					</h:form>
+				</p:outputPanel>
+			</div>
+		</div>
+	</h:body>
+    
+</html>

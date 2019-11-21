@@ -1,0 +1,238 @@
+<ui:composition
+        xmlns:h="http://xmlns.jcp.org/jsf/html"
+        xmlns:f="http://xmlns.jcp.org/jsf/core"
+        xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+        xmlns:p="http://primefaces.org/ui"
+        xmlns:pe="http://primefaces.org/ui/extensions">
+<!-- EXAMPLE-SOURCE-START -->
+
+	<style type="text/css">
+		.ui-g div {
+			text-align: center;
+			margin-bottom: 30px;
+			border-radius: 3px;
+			background-clip: border-box;
+			border: 1px solid rgba(0,0,0,.125);
+			flex-direction: column;
+			min-width: 0;
+			word-wrap: break-word;
+			display: flex;
+			position: relative;
+			flex: 1 1 auto;
+			padding: 1.25rem;
+			margin: 5px;
+		}
+	</style>
+
+<h:form >
+	<p:growl id="message"></p:growl>
+	
+	<p:tabView activeIndex="#{tabViewManagedBean.index}">
+
+		<p:tab title="Summary">
+			<h:panelGrid columns="2" cellpadding="5">
+			    
+			    <p:outputLabel value="clusterName: " />
+			    <p:outputLabel value="#{ambarimetricView.clusterName}"></p:outputLabel>
+			    
+			    <p:outputLabel value="stackId: " />
+				<p:outputLabel value="#{ambarimetricView.stackId}"></p:outputLabel>
+				
+				<p:outputLabel value="version: " />
+				<p:outputLabel value="#{ambarimetricView.version}"></p:outputLabel>
+				
+				<p:outputLabel value="Tag: " />
+				<p:outputLabel value="#{ambarimetricView.tag}"></p:outputLabel>
+
+				<h:outputLabel value="Alert Summary" />
+
+				</h:panelGrid>
+
+				<div class="ui-g">
+					<div class="ui-g-2" style="background-color: #28a745">
+						<p:outputLabel style="color: white; font-weight: bolder;font-size: large;" value="OK" />
+						<p:outputLabel style="color: white; font-weight: bolder;font-size: xx-large;" value="#{amSumService.AMSummary.ok}"></p:outputLabel>
+					</div>
+					<div class="ui-g-2" style="background-color: #17a2b8">
+						<p:outputLabel style="color: white; font-weight: bolder;font-size: large;" value="MAINTENANCE" />
+						<p:outputLabel style="color: white; font-weight: bolder;font-size: xx-large;" value="#{amSumService.AMSummary.maintenance}"></p:outputLabel>
+					</div><div class="ui-g-2" style="background-color: #ffc107">
+					<p:outputLabel style="color: white; font-weight: bolder;font-size: large;" value="WARNING" />
+					<p:outputLabel style="color: white; font-weight: bolder;font-size: xx-large;" value="#{amSumService.AMSummary.warning}"></p:outputLabel>
+					</div><div class="ui-g-2" style="background-color: #dc3545">
+						<p:outputLabel style="color: white; font-weight: bolder;font-size: large;" value="CRITICAL" />
+						<p:outputLabel style="color: white; font-weight: bolder;font-size: xx-large;" value="#{amSumService.AMSummary.critical}"></p:outputLabel>
+					</div><div class="ui-g-2" style="background-color: #343a40">
+						<p:outputLabel style="color: white; font-weight: bolder;font-size: large;" value="UNKNOWN" />
+						<p:outputLabel style="color: white; font-weight: bolder;font-size: xx-large;" value="#{amSumService.AMSummary.unknown}"></p:outputLabel>
+					</div>
+				</div>
+
+
+		</p:tab>
+
+		<p:tab title="Config">
+			<p:accordionPanel>
+			
+			<p:tab title="ams-site">
+			
+				<p:dataTable  var="entry"  value="#{ambarimetricView.properties}">
+				   <p:column>
+				      <h:outputText value="#{entry.key}" />
+				   </p:column>
+				   <p:column>
+				       <p:inputTextarea style="width: 100%" value="#{entry.value}" />
+				   </p:column>
+				</p:dataTable>
+				
+				
+			</p:tab>
+		
+		
+		
+			<p:tab title="ams-env">
+			
+			
+				<p:dataTable  var="entry"  value="#{ambarimetricView.getProperties('ams-env')}">
+				   <p:column>
+				      <h:outputText value="#{entry.key}" />
+				   </p:column>
+				   <p:column>
+				       <p:inputTextarea style="width: 100%" value="#{entry.value}" />
+				   </p:column>
+				</p:dataTable>
+			
+			</p:tab>
+			
+			<p:tab title="ams-grafana-env">
+				<p:dataTable  var="entry"  value="#{ambarimetricView.getProperties('ams-grafana-env')}">
+				   <p:column>
+				      <h:outputText value="#{entry.key}" />
+				   </p:column>
+				   <p:column>
+				       <p:inputTextarea style="width: 100%" value="#{entry.value}" />
+				   </p:column>
+				</p:dataTable>
+	 
+			</p:tab>
+			
+			<p:tab title="ams-grafana-ini">
+				<p:dataTable  var="entry"  value="#{ambarimetricView.getProperties('ams-grafana-ini')}">
+				   <p:column>
+				      <h:outputText value="#{entry.key}" />
+				   </p:column>
+				   <p:column>
+				       <p:inputTextarea style="width: 100%" value="#{entry.value}" />
+				   </p:column>
+				</p:dataTable>		
+			</p:tab>
+			
+			<p:tab title="ams-hbase-env">
+				<p:dataTable  var="entry"  value="#{ambarimetricView.getProperties('ams-hbase-env')}">
+				   <p:column>
+				      <h:outputText value="#{entry.key}" />
+				   </p:column>
+				   <p:column>
+				       <p:inputTextarea style="width: 100%" value="#{entry.value}" />
+				   </p:column>
+				</p:dataTable>		
+			</p:tab>
+			
+			<p:tab title="ams-hbase-log4j">
+				<p:dataTable  var="entry"  value="#{ambarimetricView.getProperties('ams-hbase-log4j')}">
+				   <p:column>
+				      <h:outputText value="#{entry.key}" />
+				   </p:column>
+				   <p:column>
+				       <p:inputTextarea style="width: 100%" value="#{entry.value}" />
+				   </p:column>
+				</p:dataTable>		
+			</p:tab>
+		
+		   <p:tab title="ams-hbase-policy">
+				<p:dataTable  var="entry"  value="#{ambarimetricView.getProperties('ams-hbase-policy')}">
+				   <p:column>
+				      <h:outputText value="#{entry.key}" />
+				   </p:column>
+				   <p:column>
+				       <p:inputTextarea style="width: 100%" value="#{entry.value}" />
+				   </p:column>
+				</p:dataTable>		
+			</p:tab>
+		
+		  <p:tab title="ams-hbase-security-site">
+				<p:dataTable  var="entry"  value="#{ambarimetricView.getProperties('ams-hbase-security-site')}">
+				   <p:column>
+				      <h:outputText value="#{entry.key}" />
+				   </p:column>
+				   <p:column>
+				       <p:inputTextarea style="width: 100%" value="#{entry.value}" />
+				   </p:column>
+				</p:dataTable>		
+			</p:tab>
+		
+		    <p:tab title="ams-hbase-site">
+				<p:dataTable  var="entry"  value="#{ambarimetricView.getProperties('ams-hbase-site')}">
+				   <p:column>
+				      <h:outputText value="#{entry.key}" />
+				   </p:column>
+				   <p:column>
+				       <p:inputTextarea style="width: 100%" value="#{entry.value}" />
+				   </p:column>
+				</p:dataTable>		
+			</p:tab>
+		
+		   <p:tab title="ams-log4j">
+				<p:dataTable  var="entry"  value="#{ambarimetricView.getProperties('ams-log4j')}">
+				   <p:column>
+				      <h:outputText value="#{entry.key}" />
+				   </p:column>
+				   <p:column>
+				       <p:inputTextarea style="width: 100%" value="#{entry.value}" />
+				   </p:column>
+				</p:dataTable>		
+			</p:tab>
+		
+		    <p:tab title="ams-ssl-client">
+				<p:dataTable  var="entry"  value="#{ambarimetricView.getProperties('ams-ssl-client')}">
+				   <p:column>
+				      <h:outputText value="#{entry.key}" />
+				   </p:column>
+				   <p:column>
+				       <p:inputTextarea style="width: 100%" value="#{entry.value}" />
+				   </p:column>
+				</p:dataTable>		
+			</p:tab>
+		
+		  	<p:tab title="ams-ssl-server">
+				<p:dataTable  var="entry"  value="#{ambarimetricView.getProperties('ams-ssl-server')}">
+				   <p:column> 
+				      <h:outputText value="#{entry.key}" />
+				   </p:column>
+				   <p:column>
+				       <p:inputTextarea style="width: 100%" value="#{entry.value}" />
+				   </p:column>
+				</p:dataTable>		
+			</p:tab>
+		
+		  	<p:tab title="ams-hbase-security-site">
+				<p:dataTable  var="entry"  value="#{ambarimetricView.getProperties('ams-hbase-security-site')}">
+				   <p:column>
+				      <h:outputText value="#{entry.key}" />
+				   </p:column>
+				   <p:column>
+				       <p:inputTextarea style="width: 100%" value="#{entry.value}" />
+				   </p:column>
+				</p:dataTable>		
+			</p:tab>
+
+			</p:accordionPanel>
+		</p:tab>
+	
+		
+	
+	
+	</p:tabView>
+</h:form>    
+    
+</ui:composition>

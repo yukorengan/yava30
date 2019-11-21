@@ -1,0 +1,126 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pe="http://primefaces.org/ui/extensions">
+      
+ <h:head title="PrimeFaces Extensions" >
+    <style type="text/css">
+        .ui-layout-unit{
+             border: none;
+        }
+        .ui-layout-pane{
+             border: none;
+        }
+        .ui-layout{
+             border: none;
+        }
+        .ui-toggleswitch {
+            vertical-align: bottom;
+        }
+    </style>
+ </h:head>
+ 
+ <h:body>
+ 
+<h:form id="mainForm">
+
+         <!-- <h:panelGrid columns="7" style="margin-left:8px;">   -->
+         <!-- FIX: <p:panel header="Test" style="width:99.99%"/> -->
+         <p:panelGrid  style="margin-left:8px;margin-right:8px;width:99.99%;" styleClass="ui-noborder" border="0">
+       
+              <p:outputPanel id="header">
+                  <ui:include src="/sections/layout/header-toolbar.xhtml" />
+              </p:outputPanel>
+                                    
+         </p:panelGrid>
+
+    <pe:layout id="fullPage" position="center"  fullPage="true"  options="#{fullLayout1.layoutOptions}"
+                stateCookie="true" widgetVar="fpLayoutWidget">
+         
+        <pe:layoutPane position="center">
+        
+                <f:facet name="header">
+                    <h:outputText value="Center-Center"/>
+                </f:facet>  
+                
+                <p:growl id="growl" life="2000" />
+                   
+                <p:outputPanel id="myPanel">
+                    <ui:include src="/sections/includes/#{menuContentBean.page}.xhtml" />
+                </p:outputPanel>
+                  
+                <p:messages id="msg" showDetail="true" showSummary="true">
+                    <p:effect type="pulsate" event="load" delay="0">
+                        <f:param name="mode" value="'show'"/>
+                        <f:param name="times" value="'1'"/>
+                    </p:effect>
+                </p:messages>
+                    
+                
+        </pe:layoutPane>
+        
+        <pe:layoutPane position="west">
+              
+			<f:facet name="header">
+                 <h:outputText value="WEST-Center"/>
+             </f:facet>
+ 			
+   			<ul>
+   			
+		    <li><p:commandLink id="ajax" update="myPanel" actionListener="#{menuContentBean.setPage('include1')}">
+		            <h:outputText value="Table Pagination" />
+		        </p:commandLink>
+		    </li>
+		 
+		    <li><p:commandLink id="nonAjax" ajax="true" update="myPanel" actionListener="#{menuContentBean.setPage('include2')}" >
+		           <h:outputText value="Table OnDemand" />
+		        </p:commandLink>
+		     </li>
+		
+ 			<li><p:commandLink  update="myPanel" value="Table Edit" actionListener="#{menuContentBean.setPage('editView')}" /></li> 
+ 				
+ 		     <li><p:commandLink update="myPanel" actionListener="#{menuContentBean.setPage('include3')}" value="Graph">
+                     <f:param name="pageViewId" value="graph" />
+                     </p:commandLink> </li>
+              
+                <li><p:commandLink  update="myPanel" value="tabView" actionListener="#{menuContentBean.setPage('tabView')}" /></li>  			
+ 			    <li><p:commandLink  update="myPanel" value="CONTOH" actionListener="#{menuContentBean.setPage('contohView')}" /></li>
+ 			    <li><p:commandLink  update="myPanel" value="TEST" actionListener="#{menuContentBean.setPage('testView')}" /></li>
+                <li><p:commandLink  update="myPanel" value="GRAFIK JSON" actionListener="#{menuContentBean.setPage('chartJSON')}" /></li>
+                <li><p:commandLink  update="myPanel" value="DATA SEMBAKO" actionListener="#{menuContentBean.setPage('dataSembako')}" /></li>
+                <li><p:commandLink  update="myPanel" value="DATA THE MOVIE DB" actionListener="#{menuContentBean.setPage('theMovieDB')}" /></li>
+                <li><p:commandLink  update="myPanel" value="HADOOP METRIC" actionListener="#{menuContentBean.setPage('hadoopView')}" /></li>
+                <li><p:commandLink  update="myPanel" value="TEZ Config" actionListener="#{menuContentBean.setPage('TEZView')}" /></li>
+
+  			</ul>	
+               
+        </pe:layoutPane>
+
+
+    </pe:layout>
+
+
+</h:form>
+
+<h:outputStylesheet library="css" name="global.css"/>
+     <h:outputStylesheet library="css" name="azia.css"/>
+   
+<h:outputStylesheet id="layoutCSS">
+    body {
+        margin: 4px !important;
+    }
+</h:outputStylesheet>
+
+
+
+<!-- EXAMPLE-SOURCE-END -->
+      
+ 
+
+</h:body>
+
+
+</html>

@@ -1,0 +1,164 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pe="http://primefaces.org/ui/extensions">
+      
+    <pe:head title="PrimeFaces Extensions - Layout created by pane options" shortcutIcon="#{request.contextPath}/favicon.ico">
+
+    <style type="text/css">
+        .ui-layout-unit{
+             border: none;
+        }
+        .ui-layout-pane{
+             border: none;
+        }
+        .ui-layout{
+             border: none;
+        }
+    </style>
+ </pe:head>
+ 
+ <h:body>
+ 
+<h:form id="mainForm">
+    <pe:layout id="fullPage" options="#{fullLayout.layoutOptions}"
+                stateCookie="true" widgetVar="fpLayoutWidget">
+ 
+        <pe:layoutPane position="north">
+                        
+          <!-- <h:panelGrid columns="7" style="margin-left:8px;">   -->
+          <!-- FIX: <p:panel header="Test" style="width:99.99%"/> -->
+         <p:panelGrid  style="margin-left:8px;margin-right:8px;width:99.99%;" styleClass="ui-noborder" border="0">
+       
+             		<p:toolbar>
+						<p:toolbarGroup align="left">
+							<p:commandButton type="push" value="New" icon="ui-icon-document" />
+							<p:commandButton type="push" value="Open"
+								icon="ui-icon-folder-open" />
+							<p:separator />
+							<p:commandButton type="push" title="Save" icon="ui-icon-disk" />
+							<p:commandButton type="push" title="Delete" icon="ui-icon-trash" />
+							<p:commandButton type="push" title="Print" icon="ui-icon-print" />
+						</p:toolbarGroup>
+						<p:toolbarGroup align="right">
+							<p:menuButton value="Navigate">
+								<p:menuitem value="Home" url="#" />
+								<p:menuitem value="Logout" url="#" />
+							</p:menuButton>
+						</p:toolbarGroup>
+					</p:toolbar>
+                                    
+         </p:panelGrid>
+            
+        </pe:layoutPane>
+        
+        
+        <pe:layoutPane position="center">
+        
+             <pe:layoutPane position="center">
+                 <!-- 
+                <f:facet name="header">
+                    <h:outputText value="Center-Center"/>
+                </f:facet>   -->
+                
+                <p:growl id="growl" life="2000" />
+                   
+                <p:outputPanel id="myPanel">
+                    <ui:include src="/sections/includes/#{menuContentBean.page}.xhtml" />
+                </p:outputPanel>
+                  
+                <p:messages id="msg" showDetail="true" showSummary="true">
+                    <p:effect type="pulsate" event="load" delay="0">
+                        <f:param name="mode" value="'show'"/>
+                        <f:param name="times" value="'1'"/>
+                    </p:effect>
+                </p:messages>
+                    
+            </pe:layoutPane>
+                
+        </pe:layoutPane>
+        
+        <pe:layoutPane position="west">
+             
+             <pe:layoutPane position="center">
+                
+  				<f:facet name="header">
+                    <h:outputText value="West-Center"/>
+                </f:facet>
+  				
+  				<ul>
+			    <li><p:commandLink id="ajax" update="myPanel" actionListener="#{menuContentBean.setPage('include1')}">
+			        <h:outputText value="Ajax Submit" />
+			    </p:commandLink></li>
+			 
+			    <li><p:commandLink id="nonAjax" ajax="true" update="myPanel" actionListener="#{menuContentBean.setPage('include2')}" >
+			        <h:outputText value="Non-Ajax Submit" />
+			    </p:commandLink></li>
+			
+  				
+  				<li><p:commandLink update="myPanel" actionListener="#{menuContentBean.setPage('include3')}" value="Center1">
+                 <f:param name="pageViewId" value="center1" />
+               </p:commandLink> </li>
+               
+                <li><p:commandLink  update="myPanel" value="tabView" actionListener="#{menuContentBean.setPage('tabView')}" /></li> 
+               
+ 		        <li><p:commandLink  update="myPanel" value="inputNumber" actionListener="#{menuContentBean.setPage('inputNumber')}" /></li> 
+  			    <li><p:commandLink  update="myPanel" value="dashboard" actionListener="#{menuContentBean.setPage('dashboard')}" /></li> 
+  				<li><p:commandLink  update="myPanel" value="inputGroup" actionListener="#{menuContentBean.setPage('inputGroup')}" /></li> 
+  				
+  			</ul>
+  		    
+                
+            </pe:layoutPane>
+             
+            <pe:layoutPane position="south">
+                West-South
+                		
+		        <f:ajax render=":myPanel">
+		            <ul>
+		                <li><p:commandLink  update="myPanel" value="anotherForms" actionListener="#{menuContentBean.setPage('example-anotherForms')}" /></li>            
+		                <li><p:commandLink  update="myPanel" value="advanced" actionListener="#{menuContentBean.setPage('example-advancedFeatures')}" /></li>            
+		                <li><p:commandLink  update="myPanel" value="basicUsage" actionListener="#{menuContentBean.setPage('example-basicUsage')}" /></li>  
+		                <li><p:commandLink  update="myPanel" value="containerClientId" actionListener="#{menuContentBean.setPage('example-containerClientId')}" /></li> 
+		                <li><p:commandLink  update="myPanel" value="nestedModel" actionListener="#{menuContentBean.setPage('example-nestedModel')}" /></li>
+		                <li><p:commandLink  update="myPanel" value="visitCallback" actionListener="#{menuContentBean.setPage('example-visitCallback')}" /></li> 
+		                 
+		            </ul>
+		        </f:ajax>
+         
+                 
+            </pe:layoutPane>
+            
+        </pe:layoutPane>
+        
+        <pe:layoutPane position="east">
+            East
+        </pe:layoutPane>
+        
+        <pe:layoutPane position="south">
+            South
+        </pe:layoutPane>
+        
+    </pe:layout>
+</h:form>
+
+<h:outputStylesheet library="css" name="global.css"/>
+   
+<h:outputStylesheet id="layoutCSS">
+    body {
+        margin: 4px !important;
+    }
+</h:outputStylesheet>    
+
+
+
+<!-- EXAMPLE-SOURCE-END -->
+      
+ 
+
+</h:body>
+
+
+</html>

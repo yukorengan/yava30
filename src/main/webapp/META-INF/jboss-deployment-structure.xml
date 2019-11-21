@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE xml>
+<jboss-deployment-structure>
+	<deployment>
+		<dependencies>
+			<!--
+			<module name="com.solusi247.phoenix" />
+			<module name="com.solusi247.hbase" />
+			<module name="com.solusi247.etc" />  -->
+		</dependencies>
+	</deployment>
+</jboss-deployment-structure>
