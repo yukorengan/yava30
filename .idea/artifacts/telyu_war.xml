@@ -7,7 +7,7 @@
         <packaging>war</packaging>
       </options>
     </properties>
-    <root id="archive" name="telyu-1.0.0.war">
+    <root id="archive" name="polbeng-telyu-yava-1.2.0.war">
       <element id="artifact" artifact-name="telyu:war exploded" />
     </root>
   </artifact>

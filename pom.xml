@@ -2,8 +2,8 @@
 
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>telyu</groupId>
-	<artifactId>telyu</artifactId>
-	<version>1.0.0</version>
+	<artifactId>polbeng-telyu-yava</artifactId>
+	<version>1.2.0</version>
 	<packaging>war</packaging>
 
 	<properties>  <!-- 2018.5.0 conflict di theme primeface -->

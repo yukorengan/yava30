@@ -7,7 +7,7 @@ swarm:
         login-config:
           auth-method: FORM
           form-login-config:
-            form-login-page: /login.jsp
+            form-login-page: /login.xhtml
             form-error-page: /login_error.jsp
           security-domain: my-domain
         security-constraints:
