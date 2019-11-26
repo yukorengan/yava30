@@ -68,6 +68,7 @@ public class Login {
     public String logout() {
         HttpSession session = SessionUtils.getSession();
         session.invalidate();
+        //externalContext.redirect("login.xhtml");
         return "login";
     }
 }
