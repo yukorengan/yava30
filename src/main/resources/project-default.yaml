@@ -34,8 +34,8 @@ swarm:
         xa-datasource-class-name: org.h2.jdbcx.JdbcDataSource
         driver-module-name: com.h2database.h2
       com.mysql:
-        driver-class-name: com.mysql.cj.jdbc.Driver
-        xa-datasource-class-name: com.mysql.cj.jdbc.MysqlDataSource
+        driver-class-name: com.mysql.jdbc.Driver
+        xa-datasource-class-name: com.mysql.jdbc.MysqlDataSource
         driver-module-name: com.mysql
       org.postgresql:
         driver-class-name: org.postgresql.Driver
@@ -54,7 +54,7 @@ swarm:
         password:
       TraningDS:
         driver-name: com.mysql
-        connection-url: jdbc:mysql://192.168.1.203:3306/trainingDB?useSSL=false&useUnicode=yes&characterEncoding=UTF-8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=Asia/Jakarta
+        connection-url: jdbc:mysql://192.168.1.203:3306/trainingDB
         user-name: training
         password: training123
         

@@ -1,6 +1,7 @@
-package com.verdin.jsf.model;
+package com.verzinen.polbeng.bean;
 
-import com.verdin.jsf.ejb.HBASESummaryDAO;
+import com.verzinen.polbeng.ejb.HBASESummaryDAO;
+import com.verzinen.polbeng.model.HBASESummary;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;

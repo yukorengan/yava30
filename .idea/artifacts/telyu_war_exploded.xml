@@ -147,8 +147,7 @@
           <element id="library" level="project" name="Maven: org.primefaces.themes:home:1.0.8" />
           <element id="library" level="project" name="Maven: org.chartistjsf:ChartistJSF:3.0" />
           <element id="library" level="project" name="Maven: com.google.code.gson:gson:2.8.5" />
-          <element id="library" level="project" name="Maven: mysql:mysql-connector-java:8.0.17" />
-          <element id="library" level="project" name="Maven: com.google.protobuf:protobuf-java:3.6.1" />
+          <element id="library" level="project" name="Maven: mysql:mysql-connector-java:5.1.45" />
           <element id="library" level="project" name="Maven: org.postgresql:postgresql:42.2.2" />
           <element id="library" level="project" name="Maven: org.fluttercode.datafactory:datafactory:0.8" />
           <element id="library" level="project" name="Maven: org.apache.hbase:hbase-shaded-client:2.1.2" />

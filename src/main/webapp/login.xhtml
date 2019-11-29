@@ -1,23 +1,118 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html">
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:p="http://primefaces.org/ui">
 <h:head>
+    <style>
+#myProgress {
+    width: 100%;
+    background-color: #ddd;
+}
+
+#myBar {
+    width: 1%;
+    height: 30px;
+    background-color: #4CAF50;
+}
+
+#load {
+    display: none;
+}
+</style>
     <title>Login YAVA</title>
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css" />
+    <!--Import jQuery before materialize.js-->
+    <script type="text/javascript"
+        src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <!-- Compiled and minified JavaScript -->
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
 </h:head>
-<h:body>
-    <h:form>
-        <h3>Halaman Login Yava</h3>
-        <h:outputText value="Username" />
-        <h:inputText id="username" value="#{login.user}"></h:inputText>
-        <h:message for="username"></h:message>
-        <br></br><br></br>
+<h:body styleClass="cyan lighten-2">
 
-        <h:outputText value="Password" />
-        <h:inputSecret id="password" value="#{login.pwd}"></h:inputSecret>
-        <h:message for="password"></h:message>
-        <br></br><br></br>
-
-        <h:commandButton action="#{login.validateUsernamePassword}" value="Login"></h:commandButton>
-    </h:form>
+    <div class="valign-wrapper" id="login-page">
+        <div class="container">
+            <div class="center-align">
+                <div class="row">
+                    <div class="col s6 offset-s3">
+                        <div class="card">
+                            <div class="card-content">
+                                <img class="responsive-img" src="logo-labs247.png"
+                                    style="max-width: 128px;" />
+                                <div class="left-align">
+                                    <h:form id="form-login">
+                                        <p:growl autoUpdate="true" />
+                                        <div class="row">
+                                            <div class="col s12 input-field">
+                                                <h:inputText value="#{login.user}"
+                                                    required="true" requiredMessage="User required" />
+                                                <h:outputLabel for="username" value="User" />
+                                            </div>
+                                            <div class="col s12 input-field">
+                                                <h:inputSecret id="password" required="true"
+                                                    value="#{login.pwd}" requiredMessage="Password required!" />
+                                                <h:outputLabel for="password" value="Password" />
+                                            </div>
+                                            <div class="col s12 input-field center-align">
+                                                <h:commandButton value="Go!" styleClass="btn btn-small"
+                                                    action="#{login.validateUsernamePassword}"
+                                                    onclick="showload()" />
+                                            </div>
+                                            <!-- <div class="col s6 input-field" id="loadingBar">
+                                                <div class="preloader-wrapper small active">
+                                                    <div class="spinner-layer spinner-green-only">
+                                                        <div class="circle-clipper left">
+                                                            <div class="circle"></div>
+                                                        </div>
+                                                        <div class="gap-patch">
+                                                            <div class="circle"></div>
+                                                        </div>
+                                                        <div class="circle-clipper right">
+                                                            <div class="circle"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div> -->
+                                            <div class="col s12 input-field" id="load">
+                                                <div class="progress">
+                                                    <div class="indeterminate"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </h:form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        $(document).on("ready", function() {
+            $('#login-page').css({
+                'height' : window.innerHeight + 'px'
+            });
+        });
+        function move() {
+            var elem = document.getElementById("myBar");
+            var width = 1;
+            var id = setInterval(frame, 10);
+            function frame() {
+                if (width >= 100) {
+                    clearInterval(id);
+                } else {
+                    width++;
+                    elem.style.width = width + '%';
+                }
+            }
+        }
+        function showload() {
+            document.getElementById("load").style.display = "block";
+        }
+    </script>
 </h:body>
 </html>

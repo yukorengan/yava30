@@ -1,6 +1,6 @@
-package com.verdin.jsf.ejb;
+package com.verzinen.polbeng.ejb;
 
-import com.verdin.jsf.model.YARNSummary;
+import com.verzinen.polbeng.model.MRSummary;
 import org.apache.http.Header;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpHost;
@@ -18,29 +18,28 @@ import org.apache.http.impl.client.BasicCredentialsProvider;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.util.EntityUtils;
 import org.jboss.logging.Logger;
-import org.primefaces.json.JSONArray;
 import org.primefaces.json.JSONObject;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Named;
 
 
-@Named("yarnSumService")
+@Named("mrSumService")
 @ApplicationScoped
-public class YARNSummaryDAO {
+public class MRSummaryDAO {
 	
-	static Logger logger = Logger.getLogger(YARNSummary.class);
+	static Logger logger = Logger.getLogger(MRSummary.class);
 	
-	public YARNSummary getYARNSummary() throws Exception {
+	public MRSummary getMRSummary() throws Exception {
 
 		logger.info("get in DAO ...");
 
-		YARNSummary m = new YARNSummary();
+		MRSummary m = new MRSummary();
 		String json = null;
 
 		try {
 
-			String url = "http://192.168.3.132:8080/api/v1/clusters/C10H16/services/YARN/";
+			String url = "http://192.168.3.132:8080/api/v1/clusters/C10H16/services/MAPREDUCE2/";
 
 			HttpHost targetHost = new HttpHost("192.168.3.132" , 8080, "http");
 			CredentialsProvider credsProvider = new BasicCredentialsProvider();

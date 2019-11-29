@@ -36,6 +36,7 @@
            
                   <f:facet name="options">
                       <h:outputText value="Welcome #{login.user}    "/>
+                      <h:commandButton value="USER SETTING" id="useradmin" update="myPanel" actionListener="#{menuContentBean.setPage('userView')}" />
                       <h:commandButton action="#{login.logout}" value="Logout"></h:commandButton>
                   </f:facet>
               </p:menubar>
@@ -77,6 +78,7 @@
                   <p:menuitem value="MAPREDUCE2" id="mapreduce" update="myPanel" actionListener="#{menuContentBean.setPage('mapreduce2View')}"/>
                   <p:menuitem value="AMBARI METRIC" id="ambarimetric" update="myPanel" actionListener="#{menuContentBean.setPage('ambarimetricView')}"/>
               </p:submenu>
+              <p:menuitem value="USER AMBARI" id="user" update="myPanel" actionListener="#{menuContentBean.setPage('userView')}" />
           </p:menu>
   		    
                 

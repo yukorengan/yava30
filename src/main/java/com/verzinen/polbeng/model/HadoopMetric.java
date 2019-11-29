@@ -1,4 +1,4 @@
-package com.verdin.jsf.model;
+package com.verzinen.polbeng.model;
 
 public class HadoopMetric {
     String name;

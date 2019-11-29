@@ -1,6 +1,6 @@
-package com.verdin.jsf.model;
+package com.verzinen.polbeng.model;
 
-public class HBASESummary
+public class MRSummary
 {
     int critical;
     int maintenance;

@@ -42,5 +42,9 @@
     <orderEntry type="library" name="org.hibernate:hibernate-entitymanager:5.4.6.Final" level="application" />
     <orderEntry type="library" name="org.hibernate:hibernate-core:5.3.7.Final" level="application" />
     <orderEntry type="library" name="mysql:mysql-connector-java:8.0.17" level="application" />
+    <orderEntry type="library" name="Maven: org.apache.httpcomponents:httpcore:4.4.10" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.httpcomponents:httpclient:4.5.6" level="project" />
+    <orderEntry type="library" name="Maven: org.primefaces:primefaces:7.0" level="project" />
+    <orderEntry type="library" name="Maven: org.primefaces.extensions:primefaces-extensions:7.0" level="project" />
   </component>
 </module>

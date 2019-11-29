@@ -1,6 +1,6 @@
-package com.verdin.jsf.ejb;
+package com.verzinen.polbeng.ejb;
 
-import com.verdin.jsf.model.HadoopMetric;
+import com.verzinen.polbeng.model.HadoopMetric;
 import org.apache.http.Header;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpHost;

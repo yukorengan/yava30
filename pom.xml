@@ -14,7 +14,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<jsf.version>2.2.18</jsf.version>
 	    <version.postgresql>42.2.2</version.postgresql>
-        <version.mysql>8.0.17</version.mysql>
+        <version.mysql>5.1.45</version.mysql>
 		<hbase.version>2.1.2</hbase.version>
 		<hadoop.version>3.2.0</hadoop.version>
 		<version.resteasy>3.6.3.Final</version.resteasy>
@@ -274,7 +274,7 @@
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
-			<version>8.0.17</version>
+			<version>5.1.45</version>
 		</dependency>
 
 		<dependency>

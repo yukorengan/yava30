@@ -1,6 +1,6 @@
-package com.verdin.jsf.ejb;
+package com.verzinen.polbeng.ejb;
 
-import com.verdin.jsf.model.MRSummary;
+import com.verzinen.polbeng.model.AMSummary;
 import org.apache.http.Header;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpHost;
@@ -18,29 +18,28 @@ import org.apache.http.impl.client.BasicCredentialsProvider;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.util.EntityUtils;
 import org.jboss.logging.Logger;
-import org.primefaces.json.JSONArray;
 import org.primefaces.json.JSONObject;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Named;
 
 
-@Named("mrSumService")
+@Named("amSumService")
 @ApplicationScoped
-public class MRSummaryDAO {
+public class AMSummaryDAO {
 	
-	static Logger logger = Logger.getLogger(MRSummary.class);
+	static Logger logger = Logger.getLogger(AMSummary.class);
 	
-	public MRSummary getMRSummary() throws Exception {
+	public AMSummary getAMSummary() throws Exception {
 
 		logger.info("get in DAO ...");
 
-		MRSummary m = new MRSummary();
+		AMSummary m = new AMSummary();
 		String json = null;
 
 		try {
 
-			String url = "http://192.168.3.132:8080/api/v1/clusters/C10H16/services/MAPREDUCE2/";
+			String url = "http://192.168.3.132:8080/api/v1/clusters/C10H16/services/AMBARI_METRICS/";
 
 			HttpHost targetHost = new HttpHost("192.168.3.132" , 8080, "http");
 			CredentialsProvider credsProvider = new BasicCredentialsProvider();

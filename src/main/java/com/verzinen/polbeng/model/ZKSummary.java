@@ -1,6 +1,6 @@
-package com.verdin.jsf.model;
+package com.verzinen.polbeng.model;
 
-public class TEZSummary
+public class ZKSummary
 {
     int critical;
     int maintenance;

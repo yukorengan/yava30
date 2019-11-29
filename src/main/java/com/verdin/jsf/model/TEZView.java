@@ -1,6 +1,5 @@
 package com.verdin.jsf.model;
 
-import com.verdin.jsf.ejb.HadoopMetricDAO;
 import com.verdin.jsf.ejb.TEZDAO;
 
 import javax.annotation.PostConstruct;

@@ -1,6 +1,5 @@
 package com.verdin.jsf.ejb;
 
-import com.verdin.jsf.model.HadoopMetric;
 import com.verdin.jsf.model.TEZConfig;
 import org.apache.http.Header;
 import org.apache.http.HttpEntity;
@@ -24,11 +23,6 @@ import org.primefaces.json.JSONObject;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Named;
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.util.Iterator;
 
 
 @Named("tezService")

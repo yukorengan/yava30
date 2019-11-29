@@ -1,6 +1,7 @@
-package com.verdin.jsf.model;
+package com.verzinen.polbeng.bean;
 
-import com.verdin.jsf.ejb.ZKSummaryDAO;
+import com.verzinen.polbeng.ejb.ZKSummaryDAO;
+import com.verzinen.polbeng.model.ZKSummary;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;

@@ -1,6 +1,6 @@
-package com.verdin.jsf.ejb;
+package com.verzinen.polbeng.ejb;
 
-import com.verdin.jsf.model.ZKSummary;
+import com.verzinen.polbeng.model.HIVESummary;
 import org.apache.http.Header;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpHost;
@@ -18,29 +18,28 @@ import org.apache.http.impl.client.BasicCredentialsProvider;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.util.EntityUtils;
 import org.jboss.logging.Logger;
-import org.primefaces.json.JSONArray;
 import org.primefaces.json.JSONObject;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Named;
 
 
-@Named("zkSumService")
+@Named("hiveSumService")
 @ApplicationScoped
-public class ZKSummaryDAO {
+public class HIVESummaryDAO {
 	
-	static Logger logger = Logger.getLogger(ZKSummary.class);
+	static Logger logger = Logger.getLogger(HIVESummary.class);
 	
-	public ZKSummary getZKSummary() throws Exception {
+	public HIVESummary getHIVESummary() throws Exception {
 
 		logger.info("get in DAO ...");
 
-		ZKSummary m = new ZKSummary();
+		HIVESummary m = new HIVESummary();
 		String json = null;
 
 		try {
 
-			String url = "http://192.168.3.132:8080/api/v1/clusters/C10H16/services/ZOOKEEPER/";
+			String url = "http://192.168.3.132:8080/api/v1/clusters/C10H16/services/HIVE/";
 
 			HttpHost targetHost = new HttpHost("192.168.3.132" , 8080, "http");
 			CredentialsProvider credsProvider = new BasicCredentialsProvider();
@@ -77,7 +76,6 @@ public class ZKSummaryDAO {
 
 			JSONObject obj = new JSONObject(json);
 
-			//JSONArray arr = obj.getJSONArray("alerts_summary");
 			JSONObject arr = obj.getJSONObject("alerts_summary");
 
 			m.setCritical(arr.getInt("CRITICAL"));

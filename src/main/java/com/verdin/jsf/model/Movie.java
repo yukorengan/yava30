@@ -32,3 +32,4 @@ public class Movie {
         this.poster = poster;
     }
 }
+ 

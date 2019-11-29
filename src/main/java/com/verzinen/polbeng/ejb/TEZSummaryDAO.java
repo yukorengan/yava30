@@ -1,6 +1,6 @@
-package com.verdin.jsf.ejb;
+package com.verzinen.polbeng.ejb;
 
-import com.verdin.jsf.model.TEZSummary;
+import com.verzinen.polbeng.model.TEZSummary;
 import org.apache.http.Header;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpHost;
@@ -18,7 +18,6 @@ import org.apache.http.impl.client.BasicCredentialsProvider;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.util.EntityUtils;
 import org.jboss.logging.Logger;
-import org.primefaces.json.JSONArray;
 import org.primefaces.json.JSONObject;
 
 import javax.enterprise.context.ApplicationScoped;

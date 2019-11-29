@@ -15,18 +15,19 @@
         <property name="yearIsDateType" value="false" />
       </driver-properties>
     </data-source>
-    <data-source source="LOCAL" name="trainingDB@192.168.1.203" uuid="3717a7af-e40a-47a0-8803-38108a9b7de5">
-      <driver-ref>mariadb</driver-ref>
+    <data-source source="LOCAL" name="trainingDB@192.168.1.203" uuid="acf3a566-59c8-41d9-8423-e52dcb57443b">
+      <driver-ref>mysql.8</driver-ref>
       <synchronize>true</synchronize>
-      <jdbc-driver>org.mariadb.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:mariadb://192.168.1.203:3306/trainingDB</jdbc-url>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://192.168.1.203:3306/trainingDB</jdbc-url>
       <driver-properties>
         <property name="autoReconnect" value="true" />
-        <property name="zeroDateTimeBehavior" value="convertToNull" />
+        <property name="zeroDateTimeBehavior" value="CONVERT_TO_NULL" />
         <property name="tinyInt1isBit" value="false" />
         <property name="characterEncoding" value="utf8" />
         <property name="characterSetResults" value="utf8" />
         <property name="yearIsDateType" value="false" />
+        <property name="serverTimezone" value="Asia/Jakarta" />
       </driver-properties>
     </data-source>
   </component>

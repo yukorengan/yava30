@@ -1,13 +1,13 @@
-package com.verdin.jsf.model;
+package com.verzinen.polbeng.bean;
 
-import com.verdin.jsf.ejb.HadoopMetricDAO;
+import com.verzinen.polbeng.ejb.HadoopMetricDAO;
+import com.verzinen.polbeng.model.HadoopMetric;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 import java.io.Serializable;
-import java.util.List;
 
 
 @ManagedBean(name="hadoopmetricView")

@@ -1,11 +1,8 @@
 package com.verdin.jsf.ejb;
 
-import com.mysql.cj.xdevapi.Statement;
 import com.verdin.jsf.bean.SembakoBean;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
+
+import java.sql.*;
 
 public class SembakoDA {
 
@@ -16,7 +13,7 @@ public class SembakoDA {
 
     public static Connection getConnection(){
         try{
-            Class.forName("com.mysql.cj.jdbc.Driver");
+            Class.forName("com.mysql.jdbc.Driver");
             String db_url ="jdbc:mysql://localhost:3306/magang",
                     db_userName = "root",
                     db_password = "";
