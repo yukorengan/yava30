@@ -2,6 +2,8 @@ package com.verzinen.polbeng.model;
 
 
 import com.verzinen.polbeng.ejb.UserDA;
+import com.verzinen.polbeng.ejb.UserRestDA;
+import com.verzinen.polbeng.ejb.UserRestDAO;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -14,6 +16,7 @@ public class UserBean {
 
     private int admin_id;
     private String user_name;
+    private String display_name;
     private String password;
     private boolean active;
     private boolean admin;
@@ -32,6 +35,14 @@ public class UserBean {
 
     public void setUser_name(String user_name) {
         this.user_name = user_name;
+    }
+
+    public String getDisplay_name() {
+        return display_name;
+    }
+
+    public void setDisplay_name(String display_name) {
+        this.display_name = display_name;
     }
 
     public String getPassword() {
@@ -63,6 +74,11 @@ public class UserBean {
         return UserDA.save(userBean);
     }
 
+    public String saveRestUser(UserBean userBean) {
+        addMessage("Data berhasil disimpan!!");
+        return UserRestDA.save(userBean);
+    }
+
     public String updateUser(UserBean userBean) {
         addMessage("Data berhasil disimpan!!");
         return UserDA.update(userBean);
@@ -72,6 +88,12 @@ public class UserBean {
     {
         addMessage("Data berhasil dihapus!!");
         return UserDA.delete(id);
+    }
+
+    public String deleteRestUser(String user_name)
+    {
+        addMessage("Data berhasil dihapus!!");
+        return UserRestDA.delete(user_name);
     }
 
     public void addMessage(String summary) {
