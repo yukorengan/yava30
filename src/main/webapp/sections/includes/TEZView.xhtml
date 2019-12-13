@@ -65,6 +65,81 @@
 
             </p:tab>
 
+            <p:tab title="GENERAL SETTINGS">
+                <div class="table-responsive">
+                    <table class="table mg-b-0">
+                        <thead>
+                        <tr>
+                            <th>Key</th>
+                            <th>Value</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <th scope="row">Heartbeat Interval Max</th>
+                            <td>
+                                <div class="ui-inputgroup" style="width: 100%">
+                                    <p:inputText value="#{tezConfigService.TEZConfig.heartbeatInterval}" />
+                                    <span class="ui-inputgroup-addon">ms</span>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Release Timeout Max</th>
+                            <td>
+                                <div class="ui-inputgroup" style="width: 100%">
+                                    <p:inputText value="#{tezConfigService.TEZConfig.releaseTimeoutMax}" />
+                                    <span class="ui-inputgroup-addon">ms</span>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Release Timeout Min</th>
+                            <td>
+                                <div class="ui-inputgroup" style="width: 100%">
+                                    <p:inputText value="#{tezConfigService.TEZConfig.releaseTimeoutMin}" />
+                                    <span class="ui-inputgroup-addon">ms</span>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Enable Reuse</th>
+                            <td><p:inputSwitch value="#{tezConfigService.TEZConfig.reuseEnabled}"/></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">IO Sort</th>
+                            <td>
+                                <div class="ui-inputgroup" style="width: 100%">
+                                    <p:inputText value="#{tezConfigService.TEZConfig.ioSort}" />
+                                    <span class="ui-inputgroup-addon">MB</span>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Grouping Max Size</th>
+                            <td>
+                                <div class="ui-inputgroup" style="width: 100%">
+                                    <p:inputText value="#{tezConfigService.TEZConfig.groupingMaxSize}" />
+                                    <span class="ui-inputgroup-addon">bytes</span>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Grouping Min Size</th>
+                            <td>
+                                <div class="ui-inputgroup" style="width: 100%">
+                                    <p:inputText value="#{tezConfigService.TEZConfig.groupingMinSize}" />
+                                    <span class="ui-inputgroup-addon">bytes</span>
+                                </div>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <p:commandButton value="Save Setting" action="#{tezConfigService.save(tezConfigService.TEZConfig)}" style="margin-right:20px;">
+                    </p:commandButton>
+                </div><!-- table-responsive -->
+            </p:tab>
+
             <p:tab title="CONFIGS">
                 <p:accordionPanel class="accordion accordion-dark">
 

@@ -4,182 +4,209 @@
         xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
         xmlns:p="http://primefaces.org/ui"
         xmlns:pe="http://primefaces.org/ui/extensions">
-<!-- EXAMPLE-SOURCE-START -->
 
-<h:form style="width:100%;">
-
-	<h3 style="margin-top: 0">DASHBOARD METRICS</h3>
-	<div class="ui-g">
-        <div class="ui-g-12 ui-md-3">
-            <div class="rounded overflow-hidden">
-                <div class="pd-x-10 pd-t-20 d-flex align-items-center">
-                    <div class="mg-l-20">
-                        <h3 class="tx-12 tx-spacing-1 tx-mont tx-semibold tx-uppercase tx-center">Mem Non Heap Used (MB)</h3>
-                        <div class="knob-container ui-corner-all">
-                            <p:knob labelTemplate="{value}" max="1024" min="-10" value="#{hadoopMetricService.hadoopMetric.memHeapUsedM}" disabled="true"/>
+        <!-- EXAMPLE-SOURCE-START -->
+        <h:form style="width:100%;">
+            <h3 style="margin-top: 0">DASHBOARD METRICS</h3>
+            <div class="ui-g">
+                <div class="ui-g-12 ui-md-3">
+                    <div class="rounded overflow-hidden">
+                        <div class="pd-x-10 pd-t-20 d-flex align-items-center">
+                            <div class="mg-l-20">
+                                <!-- Start HDFS Disk Usage -->
+                                <p:panel id="HDFSDiskUsage" header="HDFS Disk Usage (GB)" class="tx-12 tx-spacing-1 tx-mont tx-semibold tx-uppercase tx-center" style="font-size:14pt; text-align: center">
+                                    <p:donutChart id="hdfs" model="#{fSDatasetStateView.donutModel}" style="width: 100%; height: 224px; stroke: crimson;"/>
+                                    <p:poll interval="10" update="hdfs"/>
+                                    <h:outputText id="prtg" value="#{fSDatasetStateView._percentage}" style="font-size:16pt; font-weight: bold"/>
+                                    <p:poll interval="10" update="prtg"/>
+                                </p:panel>
+                                <!-- End HDFS Disk Usage -->
+                            </div>
                         </div>
+                        <div id="ch1" class="ht-50 tr-y-1"/>
                     </div>
                 </div>
-                <div id="ch1" class="ht-50 tr-y-1"></div>
-            </div>
-        </div>
-        <div class="ui-g-12 ui-md-3">
-            <div class="rounded overflow-hidden">
-                <div class="pd-x-10 pd-t-20 d-flex align-items-center">
-                    <div class="mg-l-20">
-                        <h3 class="tx-12 tx-spacing-1 tx-mont tx-semibold tx-uppercase tx-center">Mem Non Heap Committed (MB)</h3>
-                        <div class="knob-container ui-corner-all">
-                            <p:knob labelTemplate="{value}" max="1024" min="-10" value="#{hadoopMetricService.hadoopMetric.memHeapCommittedM}" disabled="true"/>
+                <div class="ui-g-12 ui-md-3">
+                    <div class="rounded overflow-hidden">
+                        <div class="pd-x-10 pd-t-20 d-flex align-items-center">
+                            <div class="mg-l-20">
+                                <p:panel id="nameNodeHeap" header="NameNode Heap" class="tx-12 tx-spacing-1 tx-mont tx-semibold tx-uppercase tx-center" style="font-size:14pt; text-align: center">
+                                    <p:donutChart id="heap" model="#{jvmMetricsView.donutModel}" style="width: 100%; height: 224px; stroke: crimson;"/>
+                                    <p:poll interval="10" update="heap"/>
+                                    <h:outputText id="persenJvm" value="#{jvmMetricsView._percentageJvmMetrics}" style="font-size:16pt; font-weight: bold"/>
+                                    <p:poll interval="10" update="persenJvm"/>
+                                </p:panel>
+                            </div>
                         </div>
+                        <div id="ch1" class="ht-50 tr-y-1"/>
                     </div>
                 </div>
-                <div id="ch1" class="ht-50 tr-y-1"></div>
-            </div>
-        </div>
-        <div class="ui-g-12 ui-md-3">
-            <div class="rounded overflow-hidden">
-                <div class="pd-x-10 pd-t-20 d-flex align-items-center">
-                    <div class="mg-l-20">
-                        <h3 class="tx-12 tx-spacing-1 tx-mont tx-semibold tx-uppercase tx-center">Mem Non Heap Max (MB)</h3>
-                        <div class="knob-container ui-corner-all">
-                            <p:knob labelTemplate="{value}" max="1024" min="-10" value="#{hadoopMetricService.hadoopMetric.memNonHeapMaxM}" disabled="true"/>
+                <div class="ui-g-12 ui-md-3">
+                    <div class="rounded overflow-hidden">
+                        <div class="pd-x-10 pd-t-20 d-flex align-items-center">
+                            <div class="mg-l-20">
+                                <p:panel id="nameNodeCPUWIO" header="NameNode CPU WIO" class="tx-12 tx-spacing-1 tx-mont tx-semibold tx-uppercase tx-center" style="font-size:14pt; text-align: center">
+                                    <p:donutChart id="wio" model="#{dataNodeVolumeView.donutModel}" style="width: 100%; height: 224px; stroke: crimson;"/>
+                                    <p:poll interval="10" update="wio"/>
+                                    <h:outputText id="persenWio" value="#{dataNodeVolumeView._percentageWriteIO}" style="font-size:16pt; font-weight: bold"/>
+                                    <p:poll interval="10" update="persenWio"/>
+                                </p:panel>
+                            </div>
                         </div>
+                        <div id="ch1" class="ht-50 tr-y-1"/>
                     </div>
                 </div>
-                <div id="ch1" class="ht-50 tr-y-1"></div>
-            </div>
-        </div>
-        <div class="ui-g-12 ui-md-3">
-            <div class="rounded overflow-hidden">
-                <div class="pd-x-10 pd-t-20 d-flex align-items-center">
-                    <div class="mg-l-20">
-                        <h3 class="tx-12 tx-spacing-1 tx-mont tx-semibold tx-uppercase tx-center">Mem Heap Used (MB)</h3>
-                        <div class="knob-container ui-corner-all">
-                            <p:knob labelTemplate="{value}" max="1024" min="-10" value="#{hadoopMetricService.hadoopMetric.memHeapUsedM}" disabled="true"/>
+                <div class="ui-g-12 ui-md-3">
+                    <div class="rounded overflow-hidden">
+                        <div class="pd-x-10 pd-t-20 d-flex align-items-center">
+                            <div class="mg-l-20">
+                                <p:panel id="nameYARN" header="YARN" class="tx-12 tx-spacing-1 tx-mont tx-semibold tx-uppercase tx-center" style="font-size:14pt; text-align: center">
+                                    <p:donutChart id="yarn" model="#{yARNDataView.donutModel}" style="width: 100%; height: 224px; stroke: crimson;"/>
+                                    <p:poll interval="10" update="yarn"/>
+                                    <h:outputText id="percentageYARN" value="#{yARNDataView._percentageYARN}" style="font-size:16pt; font-weight: bold"/>
+                                    <p:poll interval="10" update="percentageYARN"/>
+                                </p:panel>
+                            </div>
                         </div>
+                        <div id="ch1" class="ht-50 tr-y-1"/>
                     </div>
                 </div>
-                <div id="ch1" class="ht-50 tr-y-1"></div>
             </div>
-        </div>
-	</div>
-    <div class="ui-g">
-        <div class="ui-g-12 ui-md-3">
-            <div class="bg-danger rounded overflow-hidden">
-                <div class="pd-x-20 pd-t-20 d-flex align-items-center">
-                    <div class="mg-l-20">
-                        <p class="tx-10 tx-spacing-1 tx-mont tx-semibold tx-uppercase tx-white-8 mg-b-10">LOG FATAL</p>
-                        <p class="tx-24 tx-white tx-lato tx-bold mg-b-0 lh-1"><h:outputText value="#{hadoopMetricService.hadoopMetric.logFatal}" /></p>
+            <div class="ui-g">
+                <div class="ui-g-12 ui-md-3">
+                    <div class="bg-black-5 rounded overflow-hidden">
+                        <div class="pd-x-20 pd-t-20 d-flex align-items-center">
+                            <div class="mg-l-20">
+                                <p class="tx-10 tx-spacing-1 tx-mont tx-semibold tx-uppercase tx-white-8 mg-b-10">LOG FATAL</p>
+                                <p class="tx-24 tx-white tx-lato tx-bold mg-b-0 lh-1">
+                                    <h:outputText value="#{hadoopMetricService.hadoopMetric.logFatal}"/>
+                                </p>
+                            </div>
+                        </div>
+                        <div id="ch1" class="ht-50 tr-y-1"/>
                     </div>
                 </div>
-                <div id="ch1" class="ht-50 tr-y-1"></div>
-            </div>
-        </div>
-        <div class="ui-g-12 ui-md-3">
-            <div class="bg-danger rounded overflow-hidden">
-                <div class="pd-x-20 pd-t-20 d-flex align-items-center">
-                    <div class="mg-l-20">
-                        <p class="tx-10 tx-spacing-1 tx-mont tx-semibold tx-uppercase tx-white-8 mg-b-10">LOG ERROR</p>
-                        <p class="tx-24 tx-white tx-lato tx-bold mg-b-0 lh-1"><h:outputText value="#{hadoopMetricService.hadoopMetric.logError}" /></p>
+                <div class="ui-g-12 ui-md-3">
+                    <div class="bg-danger rounded overflow-hidden">
+                        <div class="pd-x-20 pd-t-20 d-flex align-items-center">
+                            <div class="mg-l-20">
+                                <p class="tx-10 tx-spacing-1 tx-mont tx-semibold tx-uppercase tx-white-8 mg-b-10">LOG ERROR</p>
+                                <p class="tx-24 tx-white tx-lato tx-bold mg-b-0 lh-1">
+                                    <h:outputText value="#{hadoopMetricService.hadoopMetric.logError}"/>
+                                </p>
+                            </div>
+                        </div>
+                        <div id="ch1" class="ht-50 tr-y-1"/>
                     </div>
                 </div>
-                <div id="ch1" class="ht-50 tr-y-1"></div>
-            </div>
-        </div>
-        <div class="ui-g-12 ui-md-3">
-            <div class="bg-warning rounded overflow-hidden">
-                <div class="pd-x-20 pd-t-20 d-flex align-items-center">
-                    <div class="mg-l-20">
-                        <p class="tx-10 tx-spacing-1 tx-mont tx-semibold tx-uppercase tx-white-8 mg-b-10">LOG WARN</p>
-                        <p class="tx-24 tx-white tx-lato tx-bold mg-b-0 lh-1"><h:outputText value="#{hadoopMetricService.hadoopMetric.logWarn}" /></p>
+                <div class="ui-g-12 ui-md-3">
+                    <div class="bg-warning rounded overflow-hidden">
+                        <div class="pd-x-20 pd-t-20 d-flex align-items-center">
+                            <div class="mg-l-20">
+                                <p class="tx-10 tx-spacing-1 tx-mont tx-semibold tx-uppercase tx-white-8 mg-b-10">LOG WARN</p>
+                                <p class="tx-24 tx-white tx-lato tx-bold mg-b-0 lh-1">
+                                    <h:outputText value="#{hadoopMetricService.hadoopMetric.logWarn}"/>
+                                </p>
+                            </div>
+                        </div>
+                        <div id="ch1" class="ht-50 tr-y-1"/>
                     </div>
                 </div>
-                <div id="ch1" class="ht-50 tr-y-1"></div>
-            </div>
-        </div>
-        <div class="ui-g-12 ui-md-3">
-            <div class="bg-info rounded overflow-hidden">
-                <div class="pd-x-20 pd-t-20 d-flex align-items-center">
-                    <div class="mg-l-20">
-                        <p class="tx-10 tx-spacing-1 tx-mont tx-semibold tx-uppercase tx-white-8 mg-b-10">LOG INFO</p>
-                        <p class="tx-24 tx-white tx-lato tx-bold mg-b-0 lh-1"><h:outputText value="#{hadoopMetricService.hadoopMetric.logInfo}" /></p>
+                <div class="ui-g-12 ui-md-3">
+                    <div class="bg-info rounded overflow-hidden">
+                        <div class="pd-x-20 pd-t-20 d-flex align-items-center">
+                            <div class="mg-l-20">
+                                <p class="tx-10 tx-spacing-1 tx-mont tx-semibold tx-uppercase tx-white-8 mg-b-10">LOG INFO</p>
+                                <p class="tx-24 tx-white tx-lato tx-bold mg-b-0 lh-1">
+                                    <h:outputText value="#{hadoopMetricService.hadoopMetric.logInfo}"/>
+                                </p>
+                            </div>
+                        </div>
+                        <div id="ch1" class="ht-50 tr-y-1"/>
                     </div>
                 </div>
-                <div id="ch1" class="ht-50 tr-y-1"></div>
             </div>
-        </div>
-    </div>
-    <div class="ui-g">
-        <div class="ui-g-12 ui-md-4">
-            <div class="bg-info rounded overflow-hidden">
-                <div class="pd-x-20 pd-t-20 d-flex align-items-center">
-                    <div class="mg-l-20">
-                        <p class="tx-10 tx-spacing-1 tx-mont tx-semibold tx-uppercase tx-white-8 mg-b-10">Threads New</p>
-                        <p class="tx-24 tx-white tx-lato tx-bold mg-b-0 lh-1"><h:outputText value="#{hadoopMetricService.hadoopMetric.threadsNew}" /></p>
+            <div class="ui-g">
+                <div class="ui-g-12 ui-md-4">
+                    <div class="bg-info rounded overflow-hidden">
+                        <div class="pd-x-20 pd-t-20 d-flex align-items-center">
+                            <div class="mg-l-20">
+                                <p class="tx-10 tx-spacing-1 tx-mont tx-semibold tx-uppercase tx-white-8 mg-b-10">Threads New</p>
+                                <p class="tx-24 tx-white tx-lato tx-bold mg-b-0 lh-1">
+                                    <h:outputText value="#{hadoopMetricService.hadoopMetric.threadsNew}"/>
+                                </p>
+                            </div>
+                        </div>
+                        <div id="ch1" class="ht-50 tr-y-1"/>
                     </div>
                 </div>
-                <div id="ch1" class="ht-50 tr-y-1"></div>
-            </div>
-        </div>
-        <div class="ui-g-12 ui-md-4">
-            <div class="bg-success rounded overflow-hidden">
-                <div class="pd-x-20 pd-t-20 d-flex align-items-center">
-                    <div class="mg-l-20">
-                        <p class="tx-10 tx-spacing-1 tx-mont tx-semibold tx-uppercase tx-white-8 mg-b-10">Threads Runnable</p>
-                        <p class="tx-24 tx-white tx-lato tx-bold mg-b-0 lh-1"><h:outputText value="#{hadoopMetricService.hadoopMetric.threadsRunnable}" /></p>
+                <div class="ui-g-12 ui-md-4">
+                    <div class="bg-success rounded overflow-hidden">
+                        <div class="pd-x-20 pd-t-20 d-flex align-items-center">
+                            <div class="mg-l-20">
+                                <p class="tx-10 tx-spacing-1 tx-mont tx-semibold tx-uppercase tx-white-8 mg-b-10">Threads Runnable</p>
+                                <p class="tx-24 tx-white tx-lato tx-bold mg-b-0 lh-1">
+                                    <h:outputText value="#{hadoopMetricService.hadoopMetric.threadsRunnable}"/>
+                                </p>
+                            </div>
+                        </div>
+                        <div id="ch1" class="ht-50 tr-y-1"/>
                     </div>
                 </div>
-                <div id="ch1" class="ht-50 tr-y-1"></div>
-            </div>
-        </div>
-        <div class="ui-g-12 ui-md-4">
-            <div class="bg-danger rounded overflow-hidden">
-                <div class="pd-x-20 pd-t-20 d-flex align-items-center">
-                    <div class="mg-l-20">
-                        <p class="tx-10 tx-spacing-1 tx-mont tx-semibold tx-uppercase tx-white-8 mg-b-10">Threads Blocked</p>
-                        <p class="tx-24 tx-white tx-lato tx-bold mg-b-0 lh-1"><h:outputText value="#{hadoopMetricService.hadoopMetric.threadsBlocked}" /></p>
+                <div class="ui-g-12 ui-md-4">
+                    <div class="bg-danger rounded overflow-hidden">
+                        <div class="pd-x-20 pd-t-20 d-flex align-items-center">
+                            <div class="mg-l-20">
+                                <p class="tx-10 tx-spacing-1 tx-mont tx-semibold tx-uppercase tx-white-8 mg-b-10">Threads Blocked</p>
+                                <p class="tx-24 tx-white tx-lato tx-bold mg-b-0 lh-1">
+                                    <h:outputText value="#{hadoopMetricService.hadoopMetric.threadsBlocked}"/>
+                                </p>
+                            </div>
+                        </div>
+                        <div id="ch1" class="ht-50 tr-y-1"/>
                     </div>
                 </div>
-                <div id="ch1" class="ht-50 tr-y-1"></div>
             </div>
-        </div>
-    </div>
-    <div class="ui-g">
-        <div class="ui-g-12 ui-md-4">
-            <div class="bg-info rounded overflow-hidden">
-                <div class="pd-x-20 pd-t-20 d-flex align-items-center">
-                    <div class="mg-l-20">
-                        <p class="tx-10 tx-spacing-1 tx-mont tx-semibold tx-uppercase tx-white-8 mg-b-10">Threads Waiting</p>
-                        <p class="tx-24 tx-white tx-lato tx-bold mg-b-0 lh-1"><h:outputText value="#{hadoopMetricService.hadoopMetric.threadsWaiting}" /></p>
+            <div class="ui-g">
+                <div class="ui-g-12 ui-md-4">
+                    <div class="bg-info rounded overflow-hidden">
+                        <div class="pd-x-20 pd-t-20 d-flex align-items-center">
+                            <div class="mg-l-20">
+                                <p class="tx-10 tx-spacing-1 tx-mont tx-semibold tx-uppercase tx-white-8 mg-b-10">Threads Waiting</p>
+                                <p class="tx-24 tx-white tx-lato tx-bold mg-b-0 lh-1">
+                                    <h:outputText value="#{hadoopMetricService.hadoopMetric.threadsWaiting}"/>
+                                </p>
+                            </div>
+                        </div>
+                        <div id="ch1" class="ht-50 tr-y-1"/>
                     </div>
                 </div>
-                <div id="ch1" class="ht-50 tr-y-1"></div>
-            </div>
-        </div>
-        <div class="ui-g-12 ui-md-4">
-            <div class="bg-info rounded overflow-hidden">
-                <div class="pd-x-20 pd-t-20 d-flex align-items-center">
-                    <div class="mg-l-20">
-                        <p class="tx-10 tx-spacing-1 tx-mont tx-semibold tx-uppercase tx-white-8 mg-b-10">Threads Timed Waiting</p>
-                        <p class="tx-24 tx-white tx-lato tx-bold mg-b-0 lh-1"><h:outputText value="#{hadoopMetricService.hadoopMetric.threadsTimedWaiting}" /></p>
+                <div class="ui-g-12 ui-md-4">
+                    <div class="bg-info rounded overflow-hidden">
+                        <div class="pd-x-20 pd-t-20 d-flex align-items-center">
+                            <div class="mg-l-20">
+                                <p class="tx-10 tx-spacing-1 tx-mont tx-semibold tx-uppercase tx-white-8 mg-b-10">Threads Timed Waiting</p>
+                                <p class="tx-24 tx-white tx-lato tx-bold mg-b-0 lh-1">
+                                    <h:outputText value="#{hadoopMetricService.hadoopMetric.threadsTimedWaiting}"/>
+                                </p>
+                            </div>
+                        </div>
+                        <div id="ch1" class="ht-50 tr-y-1"/>
                     </div>
                 </div>
-                <div id="ch1" class="ht-50 tr-y-1"></div>
-            </div>
-        </div>
-        <div class="ui-g-12 ui-md-4">
-            <div class="bg-warning rounded overflow-hidden">
-                <div class="pd-x-20 pd-t-20 d-flex align-items-center">
-                    <div class="mg-l-20">
-                        <p class="tx-10 tx-spacing-1 tx-mont tx-semibold tx-uppercase tx-white-8 mg-b-10">Threads Terminated</p>
-                        <p class="tx-24 tx-white tx-lato tx-bold mg-b-0 lh-1"><h:outputText value="#{hadoopMetricService.hadoopMetric.threadsTerminated}" /></p>
+                <div class="ui-g-12 ui-md-4">
+                    <div class="bg-warning rounded overflow-hidden">
+                        <div class="pd-x-20 pd-t-20 d-flex align-items-center">
+                            <div class="mg-l-20">
+                                <p class="tx-10 tx-spacing-1 tx-mont tx-semibold tx-uppercase tx-white-8 mg-b-10">Threads Terminated</p>
+                                <p class="tx-24 tx-white tx-lato tx-bold mg-b-0 lh-1">
+                                    <h:outputText value="#{hadoopMetricService.hadoopMetric.threadsTerminated}"/>
+                                </p>
+                            </div>
+                        </div>
+                        <div id="ch1" class="ht-50 tr-y-1"/>
                     </div>
                 </div>
-                <div id="ch1" class="ht-50 tr-y-1"></div>
             </div>
-        </div>
-    </div>
-
-</h:form>
-    
-</ui:composition>
+        </h:form>
+    </ui:composition>
