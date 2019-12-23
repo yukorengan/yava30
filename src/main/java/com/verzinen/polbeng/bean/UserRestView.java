@@ -1,6 +1,5 @@
 package com.verzinen.polbeng.bean;
 
-import com.verzinen.polbeng.ejb.UserDAO;
 import com.verzinen.polbeng.ejb.UserRestDAO;
 import com.verzinen.polbeng.model.UserBean;
 

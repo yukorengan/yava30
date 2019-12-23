@@ -8,19 +8,41 @@
 <!-- EXAMPLE-SOURCE-START -->
     	
             <p:panel id="ShowUser" header="Data Admin Ambari" style="width:100%">
-                <p:dataTable value="#{userRestView.user}" var="user">
+                <p:dataTable value="#{userRestEJB.userList}" var="user">
                     <p:column headerText="Username">
                         <h:outputText value="#{user.user_name}" />
                     </p:column>
                     <p:column headerText="Action">
+                        <h:commandButton value="Update"  style="margin: 5px; width:80%" action="#{userRestEJB.bantuUpdate(user.user_name)}" >
+                        </h:commandButton>
                         <h:commandButton id="deleteLink"
-                                         action="#{userBean.deleteRestUser(user.user_name)}"
+                                         action="#{userRestEJB.delData(user.user_name)}"
                                          style="margin: 5px; width:80%" value="Delete">
                         </h:commandButton>
                     </p:column>
 
                 </p:dataTable>
             </p:panel>
+
+            <p:dialog header="Update User" widgetVar="dlg4" minHeight="40">
+                <p:repeat value="#{userRestEJB.updateUser}" var="dataUpdate">
+                    <p:panelGrid columns="2" cellpadding="2" cellspacing="2"
+                                 style="width:100%">
+
+                        <p:outputLabel value="Display Name: " />
+                        <p:inputText value="#{dataUpdate.display_name}"></p:inputText>
+
+                        <p:outputLabel value="Password: " />
+                        <p:inputText value="#{dataUpdate.password}"></p:inputText>
+
+                        <h:outputText value="Create as Admin : " />
+                        <p:inputSwitch value="#{dataUpdate.admin}" />
+
+                        <h:commandButton value="Update Data"
+                                         actionListener="#{userRestEJB.updateData(dataUpdate.user_name, dataUpdate.display_name, dataUpdate.password, dataUpdate.admin)}" />
+                    </p:panelGrid>
+                </p:repeat>
+            </p:dialog>
 
             <p:dialog header="Tambah User" widgetVar="dlg3" minHeight="40">
                 <p:panelGrid columns="2" cellpadding="2" cellspacing="2"
@@ -40,11 +62,11 @@
 
                 </p:panelGrid>
                 <h:commandButton value="Insert Data"
-                                 action="#{userBean.saveRestUser(userBean)}">
+                                 action="#{userRestEJB.insertData(userBean)}">
                 </h:commandButton>
             </p:dialog>
-
-            <p:commandButton value="Insert Data" type="button"
+            <h:commandButton value="Refresh Data" actionListener="#{userRestEJB.init()}" />
+            <h:commandButton value="Insert Data" type="button"
                              onclick="PF('dlg3').show();" />
 
 </ui:composition>

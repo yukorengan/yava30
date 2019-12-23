@@ -8,7 +8,7 @@
 <!-- EXAMPLE-SOURCE-START -->
     	
             <p:panel id="ShowUser" header="Data Admin" style="width:100%">
-                <p:dataTable value="#{userView.user}" var="user">
+                <p:dataTable value="#{userEJB.userList}" var="user">
                     <p:column headerText="Username">
                         <h:outputText value="#{user.user_name}" />
                     </p:column>
@@ -16,11 +16,11 @@
                         <h:outputText value="#{user.password}" />
                     </p:column>
                     <p:column headerText="Action">
-                        <h:commandButton id="deleteLink"
-                                         action="#{userBean.deleteUser(user.admin_id)}"
-                                         style="margin: 5px; width:80%" value="Delete">
+                        <h:commandButton value="Update"  style="margin: 5px; width:80%" action="#{userEJB.bantuUpdate(user.admin_id)}" >
                         </h:commandButton>
-                        <h:commandButton value="Update" type="button"  style="margin: 5px; width:80%" onclick="PF('dlg4').show();" >
+                        <h:commandButton id="deleteLink"
+                                         action="#{userEJB.delData(user.admin_id)}"
+                                         style="margin: 5px; width:80%" value="Delete">
                         </h:commandButton>
                     </p:column>
 
@@ -28,19 +28,18 @@
             </p:panel>
 
             <p:dialog header="Update User" widgetVar="dlg4" minHeight="40">
-                <p:repeat value="#{userView.user}" var="user">
+                <p:repeat value="#{userEJB.updateUser}" var="dataUpdate">
                     <p:panelGrid columns="2" cellpadding="2" cellspacing="2"
                                  style="width:100%">
-                        <p:outputLabel value="Id: " />
-                        <p:inputNumber value="#{user.admin_id}"></p:inputNumber>
 
                         <p:outputLabel value="Username : " />
-                        <p:inputText value="#{user.user_name}"></p:inputText>
+                        <p:inputText value="#{dataUpdate.user_name}"></p:inputText>
 
-                        <p:outputLabel value="Password : " />
-                        <p:inputText value="#{user.password}"></p:inputText>
+                        <p:outputLabel value="Password: " />
+                        <p:inputText value="#{dataUpdate.password}"></p:inputText>
 
-                        <h:commandButton value="Update Data" action="#{userBean.updateUser(userBean)}" />
+                        <h:commandButton value="Update Data"
+                                         actionListener="#{userEJB.updateData(dataUpdate.admin_id, dataUpdate.user_name, dataUpdate.password)}" />
                     </p:panelGrid>
                 </p:repeat>
             </p:dialog>
@@ -50,7 +49,7 @@
                              style="width:100%">
 
                     <p:outputLabel value="Id: " />
-                    <p:inputNumber value="#{userBean.admin_id}"></p:inputNumber>
+                    <p:inputText value="#{userBean.admin_id}"></p:inputText>
 
                     <p:outputLabel value="Username: " />
                     <p:inputText value="#{userBean.user_name}"></p:inputText>
@@ -59,12 +58,10 @@
                     <p:inputText value="#{userBean.password}"></p:inputText>
 
                 </p:panelGrid>
-                <h:commandButton value="Insert Data"
-                                 action="#{userBean.saveUser(userBean)}">
+                <h:commandButton value="Insert Data" action="#{userEJB.insertData(userBean)}">
                 </h:commandButton>
             </p:dialog>
-
-            <p:commandButton value="Insert Data" type="button"
-                             onclick="PF('dlg3').show();" />
+            <h:commandButton value="Refresh Data" actionListener="#{userEJB.init()}" />
+            <h:commandButton value="Insert Data" type="button" onclick="PF('dlg3').show();" />
 
 </ui:composition>

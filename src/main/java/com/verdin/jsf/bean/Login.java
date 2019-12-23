@@ -53,7 +53,7 @@ public class Login {
                 FacesContext.getCurrentInstance().addMessage(
                         null,
                         new FacesMessage(FacesMessage.SEVERITY_WARN,
-                                "Incorrect Username and Passowrd",
+                                "Incorrect Username and Password",
                                 "Please enter correct username and Password"));
                 return "login";
             }
@@ -68,7 +68,6 @@ public class Login {
     public String logout() {
         HttpSession session = SessionUtils.getSession();
         session.invalidate();
-        //externalContext.redirect("login.xhtml");
         return "login";
     }
 }
