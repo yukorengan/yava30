@@ -21,14 +21,16 @@
             margin: 5px;
         }
     </style>
+    <p:messages id="messages" showDetail="true" closable="true">
+        <p:autoUpdate />
+    </p:messages>
 
-        <p:growl id="message"></p:growl>
     <div class="ui-g">
         <div class="ui-g-2" style="background-color: #28a745">
-            <p:commandButton value="START SERVICE"  actionListener="#{menuView.save}"  />
+            <p:commandButton value="START SERVICE"  actionListener="#{stateEJB.startState('TEZ')}"  />
         </div>
         <div class="ui-g-2"  style="background-color: #dc3545">
-            <p:commandButton value="STOP SERVICE"  actionListener="#{menuView.save}"  />
+            <p:commandButton value="STOP SERVICE"  actionListener="#{stateEJB.stopState('TEZ')}"  />
         </div>
         <div class="ui-g-12" style="background-color: #{stateEJB.readData('TEZ').equals('STARTED')? '#28a745' : stateEJB.readData('TEZ').equals('INSTALLED')? '#dc3545' : '#343a40'}" >
             <p:outputLabel style="color: white; font-weight: bolder;font-size: large;" value="CURRENT STATE STATUS" />
@@ -36,25 +38,7 @@
         </div>
     </div>
 
-        <p:tabView activeIndex="#{tabViewManagedBean.index}">
-
-            <p:tab title="SUMMARY">
-                <h:panelGrid columns="2" cellpadding="5">
-                <p:outputLabel value="Cluster : " />
-                <p:outputLabel value="#{tezView.clusterName}"></p:outputLabel>
-                
-                <p:outputLabel value="Stack ID : " />
-                <p:outputLabel value="#{tezView.stackId}"></p:outputLabel>
-
-                
-                <p:outputLabel value="Tag : " />
-                <p:outputLabel value="#{tezView.tag}"></p:outputLabel>
-
-                <h:outputLabel value="Alert Summary" />
-
-                </h:panelGrid>
-
-                <div class="ui-g">
+    <div class="ui-g">
                     <div class="ui-g-2" style="background-color: #28a745">
                             <p:outputLabel style="color: white; font-weight: bolder;font-size: large;" value="OK" />
                             <p:outputLabel style="color: white; font-weight: bolder;font-size: xx-large;" value="#{tezSumService.TEZSummary.ok}"></p:outputLabel>
@@ -72,47 +56,88 @@
                             <p:outputLabel style="color: white; font-weight: bolder;font-size: large;" value="UNKNOWN" />
                             <p:outputLabel style="color: white; font-weight: bolder;font-size: xx-large;" value="#{tezSumService.TEZSummary.unknown}"></p:outputLabel>
                     </div>
-                </div>
+    </div>
 
-            </p:tab>
+                    <div class="table-responsive">
+                    <table class="table mg-b-0">
+                        <thead>
+                        <tr>
+                            <th>Key</th>
+                            <th>Value</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <p:repeat value="#{tezConfigEJB.tezConfigList}" var="data">
+                        <tr>
+                            <th scope="row">Heartbeat Interval Max</th>
+                            <td>
+                                <div class="ui-inputgroup" style="width: 100%">
+                                    <p:inputText value="#{data.heartbeatInterval}" />
+                                    <span class="ui-inputgroup-addon">ms</span>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Release Timeout Max</th>
+                            <td>
+                                <div class="ui-inputgroup" style="width: 100%">
+                                    <p:inputText value="#{data.releaseTimeoutMax}" />
+                                    <span class="ui-inputgroup-addon">ms</span>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Release Timeout Min</th>
+                            <td>
+                                <div class="ui-inputgroup" style="width: 100%">
+                                    <p:inputText value="#{data.releaseTimeoutMin}" />
+                                    <span class="ui-inputgroup-addon">ms</span>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Enable Reuse</th>
+                            <td><p:inputSwitch value="#{data.reuseEnabled}"/></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">IO Sort</th>
+                            <td>
+                                <div class="ui-inputgroup" style="width: 100%">
+                                    <p:inputText value="#{data.ioSort}" />
+                                    <span class="ui-inputgroup-addon">MB</span>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Grouping Max Size</th>
+                            <td>
+                                <div class="ui-inputgroup" style="width: 100%">
+                                    <p:inputText value="#{data.groupingMaxSize}" />
+                                    <span class="ui-inputgroup-addon">bytes</span>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Grouping Min Size</th>
+                            <td>
+                                <div class="ui-inputgroup" style="width: 100%">
+                                    <p:inputText value="#{data.groupingMinSize}" />
+                                    <span class="ui-inputgroup-addon">bytes</span>
+                                </div>
+                            </td>
+                        </tr>
+                            <tr>
+                                <td>
+                                <h:commandButton value="Save Setting" actionListener="#{tezConfigEJB.updateData(data.heartbeatInterval, data.releaseTimeoutMax, data.releaseTimeoutMin, data.reuseEnabled, data.ioSort, data.groupingMaxSize, data.groupingMinSize)}" style="margin-right:20px;" />
+                                </td>
+                                <td>
+                                    <h:commandButton value="Refresh Data" actionListener="#{tezConfigEJB.init()}" />
+                                </td>
+                            </tr>
+                        </p:repeat>
+                        </tbody>
+                    </table>
+                </div><!-- table-responsive -->
 
-            <!-- <p:tab title="CONFIGS">
-                <p:accordionPanel class="accordion accordion-dark">
-
-                    <p:tab title="tez-env" class="card-header">
-
-
-                        <p:dataTable var="entry"
-                            value="#{tezView.getProperties('tez-env')}" class="card-body">
-                            <p:column>
-                                <h:outputText value="#{entry.key}" />
-                            </p:column>
-                            <p:column>
-                                <p:inputTextarea style="width: 100%" value="#{entry.value}" />
-                            </p:column>
-                        </p:dataTable>
-
-                    </p:tab>
-
-
-                    <p:tab title="tez-site" class="card-header">
-
-
-                        <p:dataTable var="entry"
-                            value="#{tezView.getProperties('tez-site')}" class="card-body">
-                            <p:column>
-                                <h:outputText value="#{entry.key}" />
-                            </p:column>
-                            <p:column>
-                                <p:inputTextarea style="width: 100%" value="#{entry.value}" />
-                            </p:column>
-                        </p:dataTable>
-
-                    </p:tab>
-
-                </p:accordionPanel>
-            </p:tab> -->
-
-        </p:tabView>
 
 </ui:composition>
