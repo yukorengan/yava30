@@ -7,6 +7,7 @@ public class TEZSummary
     int ok;
     int unknown;
     int warning;
+    String state;
 
     public int getCritical() {
         return critical;
@@ -46,5 +47,13 @@ public class TEZSummary
 
     public void setWarning(int warning) {
         this.warning = warning;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
     }
 }

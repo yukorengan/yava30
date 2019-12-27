@@ -8,19 +8,17 @@
         <!-- EXAMPLE-SOURCE-START -->
         <h:form style="width:100%;">
             <h3 style="margin-top: 0">DASHBOARD METRICS</h3>
-            <div class="ui-g">
+            <!-- <div class="ui-g">
                 <div class="ui-g-12 ui-md-3">
                     <div class="rounded overflow-hidden">
                         <div class="pd-x-10 pd-t-20 d-flex align-items-center">
                             <div class="mg-l-20">
-                                <!-- Start HDFS Disk Usage -->
                                 <p:panel id="HDFSDiskUsage" header="HDFS Disk Usage (GB)" class="tx-12 tx-spacing-1 tx-mont tx-semibold tx-uppercase tx-center" style="font-size:14pt; text-align: center">
                                     <p:donutChart id="hdfs" model="#{fSDatasetStateView.donutModel}" style="width: 100%; height: 224px; stroke: crimson;"/>
                                     <p:poll interval="10" update="hdfs"/>
                                     <h:outputText id="prtg" value="#{fSDatasetStateView._percentage}" style="font-size:16pt; font-weight: bold"/>
                                     <p:poll interval="10" update="prtg"/>
                                 </p:panel>
-                                <!-- End HDFS Disk Usage -->
                             </div>
                         </div>
                         <div id="ch1" class="ht-50 tr-y-1"/>
@@ -71,7 +69,7 @@
                         <div id="ch1" class="ht-50 tr-y-1"/>
                     </div>
                 </div>
-            </div>
+            </div> -->
             <div class="ui-g">
                 <div class="ui-g-12 ui-md-3">
                     <div class="bg-black-5 rounded overflow-hidden">

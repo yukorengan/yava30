@@ -25,17 +25,10 @@ import org.primefaces.json.JSONObject;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Named;
-import javax.naming.Context;
-import javax.naming.InitialContext;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.sql.DataSource;
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
@@ -44,32 +37,12 @@ import java.util.List;
 @ApplicationScoped
 public class UserRestEJB implements Serializable {
 	static final long serialVersionUID = 142232299l;
-	static EntityManagerFactory factory = null;
-	static EntityManager entityManager = null;
 
 	UserBean user;
 	List<UserBean> userList;
-	int i = 0;
-	int admin_id;
-	String password, user_name;
 	
 	UserBean updateUser;
 
-	public static Connection connObj;
-	public static PreparedStatement pstmt;
-
-	static Logger logger = Logger.getLogger(UserRestEJB.class);
-
-	public static Connection getConnection() throws Exception{
-		Context ctx = new InitialContext();
-		DataSource ds = (DataSource) ctx.lookup("java:jboss/datasources/TraningDS");
-		try{
-			connObj = ds.getConnection();
-		} catch(Exception sqlException) {
-			sqlException.printStackTrace();
-		}
-		return connObj;
-	}
 
 	@PostConstruct
 	public void init() {

@@ -1,6 +1,5 @@
 package com.verzinen.polbeng.model;
 
-import com.verzinen.polbeng.ejb.UserRestDA;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
@@ -63,17 +62,6 @@ public class UserBean {
 
     public void setAdmin(boolean admin) {
         this.admin = admin;
-    }
-
-    public String saveRestUser(UserBean userBean) {
-        addMessage("Data berhasil disimpan!!");
-        return UserRestDA.save(userBean);
-    }
-
-    public String deleteRestUser(String user_name)
-    {
-        addMessage("Data berhasil dihapus!!");
-        return UserRestDA.delete(user_name);
     }
 
     public void addMessage(String summary) {

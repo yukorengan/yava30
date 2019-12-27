@@ -22,8 +22,19 @@
         }
     </style>
 
-    <h:form>
         <p:growl id="message"></p:growl>
+    <div class="ui-g">
+        <div class="ui-g-2" style="background-color: #28a745">
+            <p:commandButton value="START SERVICE"  actionListener="#{menuView.save}"  />
+        </div>
+        <div class="ui-g-2"  style="background-color: #dc3545">
+            <p:commandButton value="STOP SERVICE"  actionListener="#{menuView.save}"  />
+        </div>
+        <div class="ui-g-12" style="background-color: #{stateEJB.readData('TEZ').equals('STARTED')? '#28a745' : stateEJB.readData('TEZ').equals('INSTALLED')? '#dc3545' : '#343a40'}" >
+            <p:outputLabel style="color: white; font-weight: bolder;font-size: large;" value="CURRENT STATE STATUS" />
+            <p:outputLabel style="color: white; font-weight: bolder;font-size: xx-large;" value="#{stateEJB.readData('TEZ').equals('STARTED')? 'SERVICE STARTED' : stateEJB.readData('TEZ').equals('INSTALLED')? 'SERVICE STOPED' : stateEJB.readData('TEZ') }"></p:outputLabel>
+        </div>
+    </div>
 
         <p:tabView activeIndex="#{tabViewManagedBean.index}">
 
@@ -65,82 +76,7 @@
 
             </p:tab>
 
-            <p:tab title="GENERAL SETTINGS">
-                <div class="table-responsive">
-                    <table class="table mg-b-0">
-                        <thead>
-                        <tr>
-                            <th>Key</th>
-                            <th>Value</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <th scope="row">Heartbeat Interval Max</th>
-                            <td>
-                                <div class="ui-inputgroup" style="width: 100%">
-                                    <p:inputText value="#{tezConfigService.TEZConfig.heartbeatInterval}" />
-                                    <span class="ui-inputgroup-addon">ms</span>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Release Timeout Max</th>
-                            <td>
-                                <div class="ui-inputgroup" style="width: 100%">
-                                    <p:inputText value="#{tezConfigService.TEZConfig.releaseTimeoutMax}" />
-                                    <span class="ui-inputgroup-addon">ms</span>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Release Timeout Min</th>
-                            <td>
-                                <div class="ui-inputgroup" style="width: 100%">
-                                    <p:inputText value="#{tezConfigService.TEZConfig.releaseTimeoutMin}" />
-                                    <span class="ui-inputgroup-addon">ms</span>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Enable Reuse</th>
-                            <td><p:inputSwitch value="#{tezConfigService.TEZConfig.reuseEnabled}"/></td>
-                        </tr>
-                        <tr>
-                            <th scope="row">IO Sort</th>
-                            <td>
-                                <div class="ui-inputgroup" style="width: 100%">
-                                    <p:inputText value="#{tezConfigService.TEZConfig.ioSort}" />
-                                    <span class="ui-inputgroup-addon">MB</span>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Grouping Max Size</th>
-                            <td>
-                                <div class="ui-inputgroup" style="width: 100%">
-                                    <p:inputText value="#{tezConfigService.TEZConfig.groupingMaxSize}" />
-                                    <span class="ui-inputgroup-addon">bytes</span>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Grouping Min Size</th>
-                            <td>
-                                <div class="ui-inputgroup" style="width: 100%">
-                                    <p:inputText value="#{tezConfigService.TEZConfig.groupingMinSize}" />
-                                    <span class="ui-inputgroup-addon">bytes</span>
-                                </div>
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
-                    <p:commandButton value="Save Setting" action="#{tezConfigService.save(tezConfigService.TEZConfig)}" style="margin-right:20px;">
-                    </p:commandButton>
-                </div><!-- table-responsive -->
-            </p:tab>
-
-            <p:tab title="CONFIGS">
+            <!-- <p:tab title="CONFIGS">
                 <p:accordionPanel class="accordion accordion-dark">
 
                     <p:tab title="tez-env" class="card-header">
@@ -175,9 +111,8 @@
                     </p:tab>
 
                 </p:accordionPanel>
-            </p:tab>
+            </p:tab> -->
 
         </p:tabView>
-    </h:form>
 
 </ui:composition>

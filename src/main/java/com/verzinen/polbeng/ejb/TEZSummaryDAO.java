@@ -75,14 +75,7 @@ public class TEZSummaryDAO {
 			}
 
 			JSONObject obj = new JSONObject(json);
-//			JSONArray arr = objTEZConfig.getJSONArray("alerts_summary");
-//
-//			m.setCritical(arr.getJSONObject(0).getInt("CRITICAL"));
-//			m.setMaintenance(arr.getJSONObject(0).getInt("MAINTENANCE"));
-//			m.setOk(arr.getJSONObject(0).getInt("OK"));
-//			m.setUnknown(arr.getJSONObject(0).getInt("UNKNOWN"));
-//			m.setWarning(arr.getJSONObject(0).getInt("WARNING"));
-//			//(arr.getJSONObject(0).getString("href"));
+
 
 			JSONObject arr = obj.getJSONObject("alerts_summary");
 
