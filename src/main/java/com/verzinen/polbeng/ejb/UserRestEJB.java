@@ -149,9 +149,15 @@ public class UserRestEJB implements Serializable {
 	public void updateData(String user_name, String display_name, String password, Boolean admin) {
 		try {
 			JSONObject input = new JSONObject();
-			input.put("Users/display_name", display_name);
-			input.put("Users/admin", admin);
-			input.put("Users/password", password);
+
+			if(password != null && !password.isEmpty()) {
+				input.put("Users/display_name", display_name);
+				input.put("Users/admin", admin);
+				input.put("Users/password", password);
+			} else {
+				input.put("Users/display_name", display_name);
+				input.put("Users/admin", admin);
+			}
 
 			URL url = new URL("http://192.168.3.132:8080/api/v1/users/" + user_name);
 			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
