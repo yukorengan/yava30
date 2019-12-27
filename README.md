@@ -11,16 +11,16 @@
 **Screenshot Program**
 
 
-![](https://raw.githubusercontent.com/yukorengan/yava30/master/Screenshot%20from%202019-11-26%2016-03-27.png)
+![](https://raw.githubusercontent.com/yukorengan/yava30/master/Screenshot%20from%202019-12-26%2015-54-36.png)
 > Tampilan Halaman Dashboard
 
 
-![](https://raw.githubusercontent.com/yukorengan/yava30/master/Screenshot%20from%202019-11-26%2016-03-23.png)
-> Tampilan Halaman Summary Service
+![](https://raw.githubusercontent.com/yukorengan/yava30/master/Screenshot%20from%202019-12-26%2015-59-11.png)
+> Tampilan Halaman Manajemen Akun Ambari
 
 
-![](https://raw.githubusercontent.com/yukorengan/yava30/master/Screenshot%20from%202019-11-26%2016-03-21.png)
-> Tampilan Halaman Summary Config
+![](https://raw.githubusercontent.com/yukorengan/yava30/master/Screenshot%20from%202019-12-26%2016-05-42.png)
+> Tampilan Halaman Manajemen Service
 
 **Cara Instal**
                 
