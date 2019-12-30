@@ -24,8 +24,6 @@ import org.primefaces.json.JSONObject;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Named;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -41,8 +39,6 @@ import org.apache.commons.lang3.RandomStringUtils;
 @ApplicationScoped
 public class TezConfigEJB implements Serializable {
 	static final long serialVersionUID = 142255299l;
-	static EntityManagerFactory factory = null;
-	static EntityManager entityManager = null;
 
 	TEZConfig tezConfig;
 	List<TEZConfig> tezConfigList;

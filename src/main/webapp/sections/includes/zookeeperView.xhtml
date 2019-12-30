@@ -24,30 +24,22 @@
     }
 </style>
 
-<h:form >
-	<p:growl id="message"></p:growl>
-	
-	<p:tabView activeIndex="#{tabViewManagedBean.index}">
-	
-		<p:tab title="Summary">
-		
-		<h:panelGrid columns="2" cellpadding="5">
-		    
-		    <p:outputLabel value="clusterName: " />
-		    <p:outputLabel value="#{zookeeperView.clusterName}"></p:outputLabel>
-		    
-		    <p:outputLabel value="stackId: " />
-			<p:outputLabel value="#{zookeeperView.stackId}"></p:outputLabel>
-			
-			<p:outputLabel value="version: " />
-			<p:outputLabel value="#{zookeeperView.version}"></p:outputLabel>
-			
-			<p:outputLabel value="Tag: " />
-			<p:outputLabel value="#{zookeeperView.tag}"></p:outputLabel>
-			
-			<h:outputLabel value="Alert Summary" />
+	<p:messages id="messages" showDetail="true" closable="true">
+		<p:autoUpdate />
+	</p:messages>
 
-        </h:panelGrid>
+	<div class="ui-g">
+		<div class="ui-g-2" style="background-color: #28a745">
+			<p:commandButton value="START SERVICE"  actionListener="#{stateEJB.startState('ZOOKEEPER')}"  />
+		</div>
+		<div class="ui-g-2"  style="background-color: #dc3545">
+			<p:commandButton value="STOP SERVICE"  actionListener="#{stateEJB.stopState('ZOOKEEPER')}"  />
+		</div>
+		<div class="ui-g-12" style="background-color: #{stateEJB.readData('ZOOKEEPER').equals('STARTED')? '#28a745' : stateEJB.readData('ZOOKEEPER').equals('INSTALLED')? '#dc3545' : '#343a40'}" >
+			<p:outputLabel style="color: white; font-weight: bolder;font-size: large;" value="CURRENT STATE STATUS" />
+			<p:outputLabel style="color: white; font-weight: bolder;font-size: xx-large;" value="#{stateEJB.readData('ZOOKEEPER').equals('STARTED')? 'SERVICE STARTED' : stateEJB.readData('ZOOKEEPER').equals('INSTALLED')? 'SERVICE STOPED' : stateEJB.readData('ZOOKEEPER') }"></p:outputLabel>
+		</div>
+	</div>
 
             <div class="ui-g">
                 <div class="ui-g-2" style="background-color: #28a745">
@@ -68,58 +60,94 @@
                         <p:outputLabel style="color: white; font-weight: bolder;font-size: xx-large;" value="#{zkSumService.ZKSummary.unknown}"></p:outputLabel>
                 </div>
             </div>
-			
-		</p:tab>	
 
-		<p:tab title="Config">
-			<p:accordionPanel>
-			
-				<p:tab title="zookeeper-env">	
-					<p:dataTable  var="entry"  value="#{zookeeperView.properties}">
-					   <p:column>
-					      <h:outputText value="#{entry.key}" />
-					   </p:column>
-					   <p:column>
-					       <p:inputTextarea style="width: 100%" value="#{entry.value}" />
-					   </p:column>
-					</p:dataTable>
-					
-					
-				</p:tab>
-
-				<p:tab title="zoo.cfg">
-				
-				
-					<p:dataTable  var="entry"  value="#{zookeeperView.getProperties('zoo.cfg')}">
-					   <p:column>
-					      <h:outputText value="#{entry.key}" />
-					   </p:column>
-					   <p:column>
-					       <p:inputTextarea style="width: 100%" value="#{entry.value}" />
-					   </p:column>
-					</p:dataTable>
-				
-				</p:tab>
-				
-				<p:tab title="zookeeper-log4j">
-				
-				
-					<p:dataTable  var="entry"  value="#{zookeeperView.getProperties('zookeeper-log4j')}">
-					   <p:column>
-					      <h:outputText value="#{entry.key}" />
-					   </p:column>
-					   <p:column>
-					       <p:inputTextarea style="width: 100%" value="#{entry.value}" />
-					   </p:column>
-					</p:dataTable>
-				
-				</p:tab>
-
-			</p:accordionPanel>
-
-		</p:tab>
-	
-	</p:tabView>
-</h:form>    
-    
+	<div class="table-responsive">
+		<table class="table mg-b-0">
+			<thead>
+			<tr>
+				<th>Key</th>
+				<th>Value</th>
+			</tr>
+			</thead>
+			<tbody>
+			<p:repeat value="#{zookeeperConfigEJB.zkConfigList}" var="data">
+				<tr>
+					<th scope="row">Tag</th>
+					<td>
+						<div class="ui-inputgroup" style="width: 100%">
+							<p:inputText value="#{data.tag}" />
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<th scope="row">autopurge.purgeInterval</th>
+					<td>
+						<div class="ui-inputgroup" style="width: 100%">
+							<p:inputText value="#{data.purgeInterval}" />
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<th scope="row">autopurge.snapRetainCount</th>
+					<td>
+						<div class="ui-inputgroup" style="width: 100%">
+							<p:inputText value="#{data.snapRetainCount}" />
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<th scope="row">Port for running ZK Server</th>
+					<td>
+						<div class="ui-inputgroup" style="width: 100%">
+							<p:inputText value="#{data.clientPort}" />
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<th scope="row">ZooKeeper directory</th>
+					<td>
+						<div class="ui-inputgroup" style="width: 100%">
+							<p:inputText value="#{data.dataDir}" />
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<th scope="row">Ticks to allow for sync at Init</th>
+					<td>
+						<div class="ui-inputgroup" style="width: 100%">
+							<p:inputText value="#{data.initLimit}" />
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<th scope="row"> Ticks to allow for sync at Init
+						Ticks to allow for sync at Runtime
+					</th>
+					<td>
+						<div class="ui-inputgroup" style="width: 100%">
+							<p:inputText value="#{data.syncLimit}" />
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<th scope="row">Length of single Tick</th>
+					<td>
+						<div class="ui-inputgroup" style="width: 100%">
+							<p:inputText value="#{data.tickTime}" />
+							<span class="ui-inputgroup-addon">ms</span>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<h:commandButton value="Save Setting" actionListener="#{zookeeperConfigEJB.updateData(data.purgeInterval, data.snapRetainCount, data.clientPort, data.dataDir, data.initLimit, data.syncLimit, data.tickTime)}" style="margin-right:20px;" />
+					</td>
+					<td>
+						<h:commandButton value="Refresh Data" actionListener="#{zookeeperConfigEJB.init()}" />
+					</td>
+				</tr>
+			</p:repeat>
+			</tbody>
+		</table>
+	</div><!-- table-responsive -->
 </ui:composition>

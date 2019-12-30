@@ -24,8 +24,24 @@
 		}
 	</style>
 
+	<p:messages id="messages" showDetail="true" closable="true">
+		<p:autoUpdate />
+	</p:messages>
+
+	<div class="ui-g">
+		<div class="ui-g-2" style="background-color: #28a745">
+			<p:commandButton value="START SERVICE"  actionListener="#{stateEJB.startState('YARN')}"  />
+		</div>
+		<div class="ui-g-2"  style="background-color: #dc3545">
+			<p:commandButton value="STOP SERVICE"  actionListener="#{stateEJB.stopState('YARN')}"  />
+		</div>
+		<div class="ui-g-12" style="background-color: #{stateEJB.readData('YARN').equals('STARTED')? '#28a745' : stateEJB.readData('YARN').equals('INSTALLED')? '#dc3545' : '#343a40'}" >
+			<p:outputLabel style="color: white; font-weight: bolder;font-size: large;" value="CURRENT STATE STATUS" />
+			<p:outputLabel style="color: white; font-weight: bolder;font-size: xx-large;" value="#{stateEJB.readData('YARN').equals('STARTED')? 'SERVICE STARTED' : stateEJB.readData('YARN').equals('INSTALLED')? 'SERVICE STOPED' : stateEJB.readData('YARN') }"></p:outputLabel>
+		</div>
+	</div>
+
 <h:form >
-	<p:growl id="message"></p:growl>
 	
 	<p:tabView activeIndex="#{tabViewManagedBean.index}">
 
