@@ -39,9 +39,9 @@ public class AMSummaryDAO {
 
 		try {
 
-			String url = "http://192.168.3.132:8080/api/v1/clusters/C10H16/services/AMBARI_METRICS/";
+			String url = "http://35.239.124.198:8080/api/v1/clusters/POLBENG/services/AMBARI_METRICS/";
 
-			HttpHost targetHost = new HttpHost("192.168.3.132" , 8080, "http");
+			HttpHost targetHost = new HttpHost("35.239.124.198" , 8080, "http");
 			CredentialsProvider credsProvider = new BasicCredentialsProvider();
 			credsProvider.setCredentials(AuthScope.ANY, new UsernamePasswordCredentials("admin", "admin"));
 
