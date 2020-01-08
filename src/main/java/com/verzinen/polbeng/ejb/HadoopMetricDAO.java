@@ -40,9 +40,9 @@ public class HadoopMetricDAO {
 
 		try {
 
-			String url = "http://192.168.3.132:50070/jmx";
+			String url = "http://35.239.124.198:50070/jmx";
 
-			HttpHost targetHost = new HttpHost("192.168.3.132" , 8080, "http");
+			HttpHost targetHost = new HttpHost("35.239.124.198" , 8080, "http");
 			CredentialsProvider credsProvider = new BasicCredentialsProvider();
 			credsProvider.setCredentials(AuthScope.ANY, new UsernamePasswordCredentials("admin", "admin"));
 

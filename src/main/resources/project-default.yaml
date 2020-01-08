@@ -54,9 +54,9 @@ swarm:
         password:
       TraningDS:
         driver-name: com.mysql
-        connection-url: jdbc:mysql://192.168.1.203:3306/trainingDB
-        user-name: training
-        password: training123
+        connection-url: jdbc:mysql://34.69.79.202:3306/trainingDB
+        user-name: root
+        password: admin
         
   logging:
     file-handlers:

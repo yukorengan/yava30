@@ -47,7 +47,7 @@ public class StateEJB implements Serializable {
 				state.put("state", "STARTED");
 				input.put("ServiceInfo", state);
 
-				URL url = new URL("http://192.168.3.132:8080/api/v1/clusters/C10H16/services/" + service);
+				URL url = new URL("http://35.239.124.198:8080/api/v1/clusters/POLBENG/services/" + service);
 				HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 				conn.setRequestMethod("PUT");
 				conn.setDoOutput(true);
@@ -88,7 +88,7 @@ public class StateEJB implements Serializable {
 				state.put("state", "INSTALLED");
 				input.put("ServiceInfo", state);
 
-				URL url = new URL("http://192.168.3.132:8080/api/v1/clusters/C10H16/services/" + service);
+				URL url = new URL("http://35.239.124.198:8080/api/v1/clusters/POLBENG/services/" + service);
 				HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 				conn.setRequestMethod("PUT");
 				conn.setDoOutput(true);
@@ -129,9 +129,9 @@ public class StateEJB implements Serializable {
 		String json = null;
 
 		try {
-			String url = "http://192.168.3.132:8080/api/v1/clusters/C10H16/services/"+ service +"?fields=ServiceInfo/state";
+			String url = "http://35.239.124.198:8080/api/v1/clusters/POLBENG/services/"+ service +"?fields=ServiceInfo/state";
 
-			HttpHost targetHost = new HttpHost("192.168.3.132" , 8080, "http");
+			HttpHost targetHost = new HttpHost("35.239.124.198" , 8080, "http");
 			CredentialsProvider credsProvider = new BasicCredentialsProvider();
 			credsProvider.setCredentials(AuthScope.ANY, new UsernamePasswordCredentials("admin", "admin"));
 

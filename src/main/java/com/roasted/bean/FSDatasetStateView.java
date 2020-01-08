@@ -34,7 +34,7 @@ public class FSDatasetStateView implements Serializable {
 
 	static Logger logger = Logger.getLogger(FSDatasetStateView.class);
 
-	static String host = "192.168.3.132";
+	static String host = "35.239.124.198";
 	static String port = "50075";
 	static String qry_name = "Hadoop:name=FSDatasetState,service=DataNode";
 

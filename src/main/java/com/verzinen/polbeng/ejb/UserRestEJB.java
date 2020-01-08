@@ -66,7 +66,7 @@ public class UserRestEJB implements Serializable {
 			input.put("Users/admin", user.getAdmin());
 			input.put("Users/password", user.getPassword());
 
-			URL url = new URL("http://192.168.3.132:8080/api/v1/users/" + user.getUser_name());
+			URL url = new URL("http://35.239.124.198:8080/api/v1/users/" + user.getUser_name());
 			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 			conn.setRequestMethod("POST");
 			conn.setDoOutput(true);
@@ -111,7 +111,7 @@ public class UserRestEJB implements Serializable {
 
 	public void delData(String user_name) {
 		 try {
-				 URL url = new URL("http://192.168.3.132:8080/api/v1/users/" + user_name);
+				 URL url = new URL("http://35.239.124.198:8080/api/v1/users/" + user_name);
 				 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 				 String encoded = Base64.getEncoder().encodeToString(("admin:admin").getBytes(StandardCharsets.UTF_8));
 				 conn.setRequestProperty("Authorization", "Basic "+encoded);
@@ -159,7 +159,7 @@ public class UserRestEJB implements Serializable {
 				input.put("Users/admin", admin);
 			}
 
-			URL url = new URL("http://192.168.3.132:8080/api/v1/users/" + user_name);
+			URL url = new URL("http://35.239.124.198:8080/api/v1/users/" + user_name);
 			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 			conn.setRequestMethod("PUT");
 			conn.setDoOutput(true);
@@ -198,9 +198,9 @@ public class UserRestEJB implements Serializable {
 		String json = null;
 
 		try {
-			String url = "http://192.168.3.132:8080/api/v1/users";
+			String url = "http://35.239.124.198:8080/api/v1/users";
 
-			HttpHost targetHost = new HttpHost("192.168.3.132" , 8080, "http");
+			HttpHost targetHost = new HttpHost("35.239.124.198" , 8080, "http");
 			CredentialsProvider credsProvider = new BasicCredentialsProvider();
 			credsProvider.setCredentials(AuthScope.ANY, new UsernamePasswordCredentials("admin", "admin"));
 
@@ -253,9 +253,9 @@ public class UserRestEJB implements Serializable {
 		String json = null;
 		try
 	    {
-			String url = "http://192.168.3.132:8080/api/v1/users/" + user_name;
+			String url = "http://35.239.124.198:8080/api/v1/users/" + user_name;
 
-			HttpHost targetHost = new HttpHost("192.168.3.132" , 8080, "http");
+			HttpHost targetHost = new HttpHost("35.239.124.198" , 8080, "http");
 			CredentialsProvider credsProvider = new BasicCredentialsProvider();
 			credsProvider.setCredentials(AuthScope.ANY, new UsernamePasswordCredentials("admin", "admin"));
 

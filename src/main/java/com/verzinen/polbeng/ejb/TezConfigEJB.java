@@ -83,7 +83,7 @@ public class TezConfigEJB implements Serializable {
 			clust.put("desired_config", desired);
 			input.put("Clusters", clust);
 
-			URL url = new URL("http://192.168.3.132:8080/api/v1/clusters/C10H16");
+			URL url = new URL("http://35.239.124.198:8080/api/v1/clusters/POLBENG");
 			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 			conn.setRequestMethod("PUT");
 			conn.setDoOutput(true);
@@ -125,11 +125,11 @@ public class TezConfigEJB implements Serializable {
 		String jsonurl = null;
 
 		try {
-			String urlInduk = "http://192.168.3.132:8080/api/v1/clusters/C10H16/configurations?type=tez-site";
+			String urlInduk = "http://35.239.124.198:8080/api/v1/clusters/POLBENG/configurations?type=tez-site";
 
 			String url = null;
 
-			HttpHost targetHost = new HttpHost("192.168.3.132" , 8080, "http");
+			HttpHost targetHost = new HttpHost("35.239.124.198" , 8080, "http");
 			CredentialsProvider credsProvider = new BasicCredentialsProvider();
 			credsProvider.setCredentials(AuthScope.ANY, new UsernamePasswordCredentials("admin", "admin"));
 
